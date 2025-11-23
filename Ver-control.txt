@@ -1,1 +1,2 @@
 "Ver1" == Index y CSS + Conexion a BD
+"Ver2" == Signs In/Up terminados + procesar y restablecer contraseña/No incluye animacion de JSS
