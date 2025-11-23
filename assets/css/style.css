@@ -1,0 +1,237 @@
+/* Paleta principal */
+:root {
+    --primario: #0D1028;
+    --secundario-1: #5146D9;
+    --secundario-2: #FFE1EC;
+    --secundario-3: #6FA8FF;
+    --secundario-4: #FFB48A;
+    --secundario-5: #FF9BBF;
+
+    --gris-oscuro: #1A1C2D;
+    --gris-claro: #ECECEC;
+    --blanco: #FFFFFF;
+    --violeta-suave: #D8D3FF; 
+}
+
+/* Panel izquierdo */
+.login-left {
+    background: var(--primario);
+}
+
+.logo-img {
+    width: 900px;
+    margin-top: 100px;
+}
+
+.logo-title span {
+    color: var(--secundario-1);
+}
+
+/* Tabs */
+.tab-btn {
+    padding: 8px 26px;
+    background: var(--gris-oscuro);
+    color: white;
+    border-radius: 30px;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.tab-btn.active {
+    background: var(--secundario-1);
+}
+
+.tab-btn.active2 {
+    background: var(--secundario-5);
+}
+
+.tab-btn:hover {
+    opacity: 0.5;
+}
+
+/* Título */
+.underline {
+    width: 150px;
+    height: 3px;
+    background: var(--secundario-1);
+    margin-top: -5px;
+}
+
+.underline2 {
+    width: 150px;
+    height: 3px;
+    background: var(--secundario-5);
+    margin-top: -5px;
+}
+
+/* Tarjeta del formulario */
+.form-card,
+.form-card1 {
+    border-radius: 20px;
+    width: 80%;
+}
+
+.form-card {
+    background: var(--violeta-suave);
+}
+
+.form-card1 {
+    background: var(--secundario-2);
+    opacity: 0.9;
+}
+
+/* Inputs */
+.custom-label {
+    font-weight: 600;
+    color: var(--primario);
+}
+
+.form-input {
+    width: 100%;
+    border: none;
+    border-bottom: 1.5px solid #777;
+    padding: 6px 4px;
+    background: transparent;
+    outline: none;
+}
+
+.form-input:focus {
+    border-bottom-color: var(--secundario-1);
+}
+
+/* Botón */
+.submit-btn {
+    background: var(--gris-oscuro);
+    color: white;
+    padding: 12px 0;
+    border-radius: 12px;
+    width: 50%;
+    font-weight: 600;
+    box-shadow: 3px 4px 6px rgba(0,0,0,0.25);
+}
+
+.submit-btn:hover {
+    background: #ffffff;
+    color: var(--primario);
+}
+
+/* Animaciones */
+.fade-in {
+    animation: fadeIn 0.8s ease-out forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.slide-left {
+    animation: slideLeft 0.4s ease-out forwards;
+}
+
+@keyframes slideLeft {
+    from { opacity: 0; transform: translateX(40px); }
+    to   { opacity: 1; transform: translateX(0); }
+}
+
+.slide-right {
+    animation: slideRight 0.4s ease-out forwards;
+}
+
+@keyframes slideRight {
+    from { opacity: 0; transform: translateX(-40px); }
+    to   { opacity: 1; transform: translateX(0); }
+}
+
+/* Loader */
+.loader-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(13, 16, 40, 0.92);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 99999;
+}
+
+.loader-logo {
+    width: 120px;
+    animation: glow 1.8s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+    0% {
+        filter: drop-shadow(0 0 2px #6FA8FF) 
+                drop-shadow(0 0 6px #5146D9);
+        transform: scale(1);
+    }
+    100% {
+        filter: drop-shadow(0 0 6px #FF9BBF)
+                drop-shadow(0 0 14px #5146D9);
+        transform: scale(1.07);
+    }
+}
+
+/* Toasts */
+#app-toast-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 99999;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.app-toast {
+    min-width: 240px;
+    max-width: 320px;
+    padding: 10px 14px;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.app-toast-hide {
+    opacity: 0;
+    transform: translateX(20px);
+}
+
+.app-toast-message {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.app-toast-close {
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.app-toast-info {
+    background: #6FA8FF;
+}
+
+.app-toast-success {
+    background: #28a745;
+}
+
+.app-toast-warning {
+    background: #FFC107;
+    color: #333;
+}
+
+.app-toast-error {
+    background: #dc3545;
+}
