@@ -87,5 +87,5 @@ $stmtUpdate->execute([
 ]);
 
 /* Redirigir al detalle de la materia con mensaje */
-header("Location: ver_materia.php?id=" . $id_materia . "&exito=materia_editada");
+header("Location: index.php?id=" . $id_materia . "&exito=materia_editada");
 exit;

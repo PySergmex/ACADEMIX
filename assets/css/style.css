@@ -236,21 +236,55 @@
     background: #dc3545;
 }
 
-/* ==========================
-   FOOTER GLOBAL
-========================== */
+/* ===============================
+   FOOTER GLOBAL ACADEMIX
+   =============================== */
 
 .footer-global {
-    background-color: #000;
+    background-color: #0D1028;
     color: white;
     text-align: center;
-    padding: 16px 10px;
+    padding: 20px;
     width: 100%;
 }
 
-/* Eliminar cualquier padding que agregaba espacio */
-body {
-    padding-bottom: 0 !important;
+.footer-inner {
+    max-width: 1200px;
+    margin: auto;
+    padding: 0 20px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.footer-inner p {
+    margin: 0;
+    font-size: 15px;
+    opacity: 0.9;
+}
+
+/* Icono moderno */
+.footer-icon {
+    color: #fff;
+    font-size: 22px;
+    opacity: 0.8;
+    transition: 0.2s ease-in-out;
+}
+
+.footer-icon:hover {
+    opacity: 1;
+    color: #6FA8FF; /* acento */
+}
+
+/* Responsivo */
+@media (max-width: 600px) {
+    .footer-inner {
+        flex-direction: column;
+        gap: 6px;
+        text-align: center;
+    }
 }
 
 

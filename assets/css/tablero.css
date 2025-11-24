@@ -3,7 +3,7 @@
    - Paletas por rol con variables CSS
 ========================================================== */
 body {
-    padding-bottom: 50px; /*se ajusta al tamaño del sidebar del footer*/
+    padding-bottom: 0px; /*se ajusta al tamaño del sidebar del footer*/
 }
 
 /* ---------- PALETA BASE GLOBAL ---------- */

@@ -9,39 +9,57 @@ function alertProfesor($tipo, $mensaje) {
     ";
 }
 
-/* Inscripciones */
+/* =======================================================
+   INSCRIPCIONES
+======================================================= */
 if (isset($_GET["inscripcion"])) {
-    if ($_GET["inscripcion"] === "aprobada") {
-        alertProfesor("success", "La inscripción fue aprobada correctamente.");
-    }
-    if ($_GET["inscripcion"] === "rechazada") {
-        alertProfesor("warning", "La inscripción fue rechazada.");
+    switch ($_GET["inscripcion"]) {
+        case "aprobada":
+            alertProfesor("success", "La inscripción fue aprobada correctamente.");
+            break;
+        case "rechazada":
+            alertProfesor("warning", "La inscripción fue rechazada.");
+            break;
     }
 }
 
-/* Tareas */
+/* =======================================================
+   TAREAS
+======================================================= */
 if (isset($_GET["exito"])) {
-    if ($_GET["exito"] === "tarea_creada") {
-        alertProfesor("success", "Tarea creada correctamente.");
-    }
-    if ($_GET["exito"] === "tarea_editada") {
-        alertProfesor("success", "La tarea fue actualizada.");
-    }
-    if ($_GET["exito"] === "tarea_eliminada") {
-        alertProfesor("success", "La tarea fue eliminada correctamente.");
+    switch ($_GET["exito"]) {
+        case "tarea_creada":
+            alertProfesor("success", "Tarea creada correctamente.");
+            break;
+        case "tarea_editada":
+            alertProfesor("success", "La tarea fue actualizada.");
+            break;
+        case "tarea_eliminada":
+            alertProfesor("success", "La tarea fue eliminada correctamente.");
+            break;
+        case "materia_editada": // ya existía
+            alertProfesor("success", "La materia fue actualizada correctamente.");
+            break;
     }
 }
 
-/* Calificaciones */
+/* =======================================================
+   CALIFICACIONES
+======================================================= */
 if (isset($_GET["ok"])) {
-    if ($_GET["ok"] === "creado") {
-        alertProfesor("success", "Calificación registrada.");
-    }
-    if ($_GET["ok"] === "editado") {
-        alertProfesor("success", "Calificación actualizada.");
+    switch ($_GET["ok"]) {
+        case "creado":
+            alertProfesor("success", "Calificación registrada.");
+            break;
+        case "editado":
+            alertProfesor("success", "Calificación actualizada.");
+            break;
     }
 }
-/* Materias */
+
+/* =======================================================
+   MATERIAS (creación, edición, desactivación)
+======================================================= */
 if (isset($_GET["materia"])) {
     switch ($_GET["materia"]) {
         case "creada":
@@ -55,45 +73,38 @@ if (isset($_GET["materia"])) {
             break;
     }
 }
-/* Materias (profesor) */
-if (isset($_GET["exito"])) {
-    if ($_GET["exito"] === "materia_editada") {
-        alertProfesor("success", "La materia fue actualizada correctamente.");
-    }
-}
 
-/* Errores de materias */
+/* =======================================================
+   ERRORES DE MATERIAS
+======================================================= */
 if (isset($_GET["error"])) {
-    if ($_GET["error"] === "materia_datos") {
-        alertProfesor("danger", "Faltan datos para registrar o editar la materia.");
-    }
-    if ($_GET["error"] === "materia_no_encontrada") {
-        alertProfesor("danger", "La materia no existe o no pertenece a tu cuenta.");
-    }
-    if ($_GET["error"] === "error_bd") {
-        alertProfesor("danger", "Ocurrió un error al guardar la información de la materia.");
+    switch ($_GET["error"]) {
+        case "faltan_datos":
+            alertProfesor("danger", "Faltan datos para completar la acción.");
+            break;
+        case "materia_datos":
+            alertProfesor("danger", "Faltan datos para registrar o editar la materia.");
+            break;
+        case "materia_no_encontrada":
+            alertProfesor("danger", "La materia no existe o no pertenece a tu cuenta.");
+            break;
+        case "error_bd":
+            alertProfesor("danger", "Ocurrió un error al guardar la información.");
+            break;
+        case "no_permitido":
+            alertProfesor("warning", "No tienes permiso para realizar esta acción.");
+            break;
+        case "tarea_no_encontrada":
+            alertProfesor("danger", "La tarea no existe.");
+            break;
+        case "calificacion_no_encontrada":
+            alertProfesor("danger", "La calificación no existe.");
+            break;
+        case "entrega_no_encontrada":
+            alertProfesor("danger", "El alumno no ha entregado esta tarea.");
+            break;
     }
 }
 
+?>
 
-/* Errores */
-if (isset($_GET["error"])) {
-    if ($_GET["error"] === "faltan_datos") {
-        alertProfesor("danger", "Faltan datos para completar la acción.");
-    }
-    if ($_GET["error"] === "error_bd") {
-        alertProfesor("danger", "Ocurrió un error al guardar la información.");
-    }
-    if ($_GET["error"] === "no_permitido") {
-        alertProfesor("warning", "No tienes permiso para realizar esta acción.");
-    }
-    if ($_GET["error"] === "tarea_no_encontrada") {
-        alertProfesor("danger", "La tarea no existe.");
-    }
-    if ($_GET["error"] === "calificacion_no_encontrada") {
-        alertProfesor("danger", "La calificación no existe.");
-    }
-    if ($_GET["error"] === "entrega_no_encontrada") {
-        alertProfesor("danger", "El alumno no ha entregado esta tarea.");
-    }
-}
