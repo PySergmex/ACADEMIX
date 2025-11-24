@@ -16,25 +16,19 @@ require_once __DIR__ . "/config.php";
         <i class="bi bi-people"></i>
     </a>
 
-    <!-- Maestros -->
-    <a href="<?= BASE_URL ?>home/admin/maestros/index.php"
-       class="sidebar-icon <?= ($pagina_activa === 'maestros') ? 'active' : ''; ?>"
-       title="Maestros">
-        <i class="bi bi-person-workspace"></i>
-    </a>
-
-    <!-- Dashboard -->
-    <a href="<?= BASE_URL ?>home/admin/dashboard.php"
-       class="sidebar-icon <?= ($pagina_activa === 'dashboard') ? 'active' : ''; ?>"
-       title="Dashboard">
-        <i class="bi bi-speedometer2"></i>
-    </a>
-
-    <!-- Materias -->
+        <!-- Materias -->
     <a href="<?= BASE_URL ?>home/admin/materias/index.php"
        class="sidebar-icon <?= ($pagina_activa === 'materias') ? 'active' : ''; ?>"
        title="Materias">
         <i class="bi bi-journal-bookmark"></i>
     </a>
+
+    <!-- Dashboard -->
+    <a href="<?= BASE_URL ?>home/admin/dashboard/index.php"
+       class="sidebar-icon <?= ($pagina_activa === 'dashboard') ? 'active' : ''; ?>"
+       title="Dashboard">
+        <i class="bi bi-speedometer2"></i>
+    </a>
+
 
 </aside>
