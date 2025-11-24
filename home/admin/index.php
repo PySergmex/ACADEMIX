@@ -77,9 +77,12 @@ $pagina_activa = 'usuarios';
     <meta charset="UTF-8">
     <title>Administrar Usuarios - AcademiX</title>
 
+    <!--Bootsrap-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+     <!--Iconos Bootstrap-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/admin.css">
+    <!-- CSS tablero -->
+    <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/tablero.css">
 </head>
 
 <body class="admin-dashboard">
@@ -199,9 +202,13 @@ $pagina_activa = 'usuarios';
         </main>
     </div>
 
+    <!-- FOOTER GLOBAL -->
+    <?php include "../../includes/footer.php"; ?>
+    <!-- JS Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- JS global -->
     <script src="<?= BASE_URL ?>assets/js/main.js"></script>
-
+    <!-- Buscador JS--->                                    
     <script>
     document.addEventListener("DOMContentLoaded", () => {
         iniciarBuscadorEnTiempoReal(

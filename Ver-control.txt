@@ -1,2 +1,7 @@
 "Ver1" == Index y CSS + Conexion a BD
 "Ver2" == Signs In/Up terminados + procesar y restablecer contraseña/No incluye animacion de JSS
+"Ver3" == JSS sin chars
+"Ver4" == Includes completos
+"Ver5" == Admin panel Acceso / Hasta aquí ya estan los logins y el panel del administrador (solamente el panel)
+"Ver6" == Material panel / Hasta aquí se terminaron las secciones del dashboard de admin.
+"Ver7" == Incluimos footer en Index -admin

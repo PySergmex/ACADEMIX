@@ -1,0 +1,253 @@
+/* =======================================================
+   ACADEMIX - LAYOUT UNIFICADO (ADMIN + PROFESOR) 
+   - Paletas por rol con variables CSS
+========================================================== */
+body {
+    padding-bottom: 50px; /*se ajusta al tamaño del sidebar del footer*/
+}
+
+/* ---------- PALETA BASE GLOBAL ---------- */
+:root {
+    --color-primario: #0D1028;
+    --color-texto: #111;
+    --color-blanco: #ffffff;
+    --color-gris-borde: #dddddd;
+    --color-gris-fondo: #f3f4f7;
+}
+
+/* ======================================================
+   VARIABLES POR ROL
+   (se aplican según la clase del <body>)
+====================================================== */
+
+/* ADMIN */
+.admin-dashboard {
+    --layout-bg: #f3f4f7;
+    --sidebar-bg: #EEE9FF;
+    --accent-main: #5146D9;
+    --accent-alt: #6FA8FF;
+    --card-bg: #ffffff;
+}
+
+/* PROFESOR */
+.prof-dashboard {
+    --layout-bg: #f5f6fa;
+    --sidebar-bg: #ececff;
+    --accent-main: #5146D9;   /* tono violeta */
+    --accent-alt: #6FA8FF;    /* azul suave */
+    --card-bg: #ffffff;
+}
+
+/* ======================================================
+   LAYOUT GENERAL
+====================================================== */
+
+.admin-dashboard,
+.prof-dashboard {
+    background: var(--layout-bg, var(--color-gris-fondo));
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    color: var(--color-texto);
+}
+
+/* ======================================================
+   TOPBAR (compartida para admin/profesor)
+====================================================== */
+
+.topbar {
+    background: var(--color-primario);
+    color: var(--color-blanco);
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 28px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+}
+
+.logo-dashboard {
+    width: 120px;
+}
+
+.user-avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid #fff;
+}
+
+.user-avatar img {
+    width: 100%;
+}
+
+/* ======================================================
+   SIDEBAR (compartida)
+====================================================== */
+
+.sidebar-admin {
+    width: 90px;
+    background: var(--sidebar-bg, #EEE9FF);
+    padding-top: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    min-height: calc(100vh - 72px);
+}
+
+.sidebar-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 16px;
+    color: var(--color-primario);
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.2s ease-in-out;
+}
+
+.sidebar-icon:hover {
+    background: rgba(0, 0, 0, 0.03);
+}
+
+.sidebar-icon.active {
+    background: linear-gradient(135deg, var(--accent-main), var(--accent-alt));
+    color: var(--color-blanco);
+    box-shadow: 0 6px 14px rgba(0,0,0,0.25);
+}
+
+/* ======================================================
+   CONTENIDO PRINCIPAL
+====================================================== */
+
+.content-area {
+    flex: 1;
+    padding: 32px;
+}
+
+/* En vistas donde no quieres tanto padding (ej: login interno),
+   puedes sobreescribir .content-area localmente si lo necesitas. */
+
+/* ======================================================
+   TARJETAS Y FORMULARIOS
+====================================================== */
+
+/* Card estándar de panel: se usaba como admin-form-card
+   y también en profesor, ahora unificada */
+.admin-form-card,
+.prof-card {
+    background: var(--card-bg, #ffffff);
+    border-radius: 18px;
+    padding: 28px;
+    border: 1px solid var(--color-gris-borde);
+    box-shadow: 0 6px 22px rgba(0,0,0,0.08);
+    max-width: 520px;
+}
+
+/* Campos dentro de la tarjeta */
+.admin-form-card input,
+.admin-form-card select,
+.admin-form-card textarea,
+.prof-card input,
+.prof-card select,
+.prof-card textarea {
+    border-radius: 10px;
+}
+
+/* Pequeño efecto hover en tarjetas de formulario */
+.admin-form-card:hover,
+.prof-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(0,0,0,0.12);
+}
+
+/* Cards Bootstrap genéricas con animación suave */
+.card {
+    opacity: 0;
+    animation: fadeIn .55s ease forwards;
+}
+
+/* ======================================================
+   ANIMACIONES
+====================================================== */
+
+.fade-in {
+    animation: fadeIn 0.45s ease forwards;
+    opacity: 0;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ======================================================
+   TOASTS PERSONALIZADOS (para main.js)
+====================================================== */
+
+.custom-toast {
+    position: fixed;
+    top: -80px;
+    right: 20px;
+    background: var(--color-primario);
+    color: var(--color-blanco);
+    padding: 12px 20px;
+    border-radius: 12px;
+    font-size: 15px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+    opacity: 0;
+    transform: translateY(-15px);
+    transition: all .35s ease;
+    z-index: 9999;
+}
+
+.custom-toast.show {
+    opacity: 1;
+    top: 20px;
+    transform: translateY(0);
+}
+
+.toast-success {
+    background: #28a745;
+}
+
+.toast-danger {
+    background: #dc3545;
+}
+
+.toast-warning {
+    background: #ffc107;
+    color: #222;
+}
+
+/* ======================================================
+   ALERTAS PREMIUM
+====================================================== */
+
+.premium-alert {
+    border-radius: 14px;
+    font-size: 15px;
+    padding: 14px 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+}
+
+.premium-alert i {
+    font-size: 18px;
+}
+
+/* ======================================================
+   RESPONSIVE
+====================================================== */
+
+@media (max-width: 768px) {
+    .sidebar-admin {
+        display: none;
+    }
+
+    .content-area {
+        padding: 16px;
+    }
+}

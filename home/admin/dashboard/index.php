@@ -54,9 +54,14 @@ $promedios = $pdo->query("
     <meta charset="UTF-8">
     <title>Dashboard Admin - AcademiX</title>
 
+    <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/admin.css">
+
+    <!-- CSS tablero -->
+    <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/tablero.css">
 
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -132,9 +137,15 @@ $promedios = $pdo->query("
     </main>
 
 </div>
-
-<script type="module">
-import { iniciarContadores, cargarGraficaEstatus, cargarGraficaPromedios } from "<?= BASE_URL ?>assets/js/chart.js";
+    <!-- FOOTER GLOBAL -->
+    <?php include "../../../includes/footer.php"; ?>
+    <!-- JS Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- JS global -->
+    <script src="<?= BASE_URL ?>assets/js/main.js"></script>
+    <!--ChartJS-->
+    <script type="module">
+    import { iniciarContadores, cargarGraficaEstatus, cargarGraficaPromedios } from "<?= BASE_URL ?>assets/js/chart.js";
 
 // Activar contador
 iniciarContadores();

@@ -19,10 +19,13 @@ $estatus_list = $pdo->query("SELECT * FROM cat_estatus_usuario")->fetchAll();
     <meta charset="UTF-8">
     <title>Registrar usuario - AcademiX</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!--Bootsrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+     <!--Iconos Bootstrap-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <!-- CSS tablero -->
+    <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/tablero.css">
 
-    <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/admin.css">
 </head>
 
 <body class="admin-dashboard">
@@ -109,9 +112,13 @@ $estatus_list = $pdo->query("SELECT * FROM cat_estatus_usuario")->fetchAll();
             </div>
         </main>
     </div>
+    <!-- FOOTER GLOBAL -->
+    <?php include "../../includes/footer.php"; ?>
 
+    <!-- JS Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- JS global -->
     <script src="<?= BASE_URL ?>assets/js/main.js"></script>
 
 </body>

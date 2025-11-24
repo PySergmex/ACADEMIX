@@ -46,7 +46,7 @@ if (!$materia || $materia["id_usuario_maestro"] != $id_maestro) {
 }
 
 /* =======================================================
-   PROCESAR HORARIO PARA MOSTRARLO
+   PROCESAR HORARIO (para mostrar días seleccionados)
 ======================================================= */
 $dias_seleccionados = [];
 $hora_inicio = "";
@@ -68,7 +68,7 @@ if (!empty($materia["materia_horario"])) {
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Editar materia - Profesor | AcademiX</title>
+    <title>Editar materia | Profesor - AcademiX</title>
 
     <!--Bootstrap-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -80,26 +80,25 @@ if (!empty($materia["materia_horario"])) {
 
 <body class="prof-dashboard">
 
-    <!--Topbar-->
+    <!--TOPBAR-->
     <?php include "../../includes/topbar_profesor.php"; ?>
 
     <div class="d-flex">
 
-        <!--Sidebar-->
+        <!--SIDEBAR-->
         <?php 
             $pagina_activa = "materias";
             include "../../includes/sidebar_profesor.php"; 
         ?>
 
-        <!-- CONTENIDO -->
+        <!--CONTENIDO-->
         <main class="content-area">
 
             <h3 class="mb-4 fw-bold">Editar materia</h3>
 
-            <!-- CARD central igual al estilo admin -->
             <div class="admin-form-card p-4 col-lg-6 col-md-8">
 
-                <form method="POST" action="procesar_editar_materia.php">
+                <form action="procesar_editar_materia.php" method="POST">
 
                     <input type="hidden" name="id_materia" value="<?= $materia["id_materia"] ?>">
 
@@ -176,12 +175,13 @@ if (!empty($materia["materia_horario"])) {
                         </div>
 
                         <small class="text-muted ps-3">
-                            El horario se generará automáticamente.
+                            El horario se generará automáticamente. Ejemplo: <strong>Lun-Mar 08:00-10:00</strong>
                         </small>
                     </div>
 
                     <!-- BOTONES -->
-                    <div class="d-flex justify-content-between mt-4">
+                    <div class="d-flex justify-content-between">
+
                         <a href="index.php" class="btn btn-outline-secondary">
                             <i class="bi bi-arrow-left"></i> Volver
                         </a>
@@ -189,6 +189,7 @@ if (!empty($materia["materia_horario"])) {
                         <button type="submit" class="btn btn-primary">
                             <i class="bi bi-save"></i> Guardar cambios
                         </button>
+
                     </div>
 
                 </form>
@@ -198,14 +199,11 @@ if (!empty($materia["materia_horario"])) {
         </main>
 
     </div>
-
-    <!-- FOOTER GLOBAL -->
+    <!-- FOOTER -->
     <?php include "../../includes/footer.php"; ?>
-
     <!--Bootstrap JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- JS Global -->
+    <!--JS Global-->
     <script src="<?= BASE_URL ?>assets/js/main.js"></script>
-
 </body>
 </html>

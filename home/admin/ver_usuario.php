@@ -42,9 +42,12 @@ if (!$usuario) {
     <meta charset="UTF-8">
     <title>Perfil del usuario - AcademiX</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!--Bootsrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+     <!--Iconos Bootstrap-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/admin.css">
+     <!-- CSS tablero -->
+    <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/tablero.css">
 </head>
 
 <body class="admin-dashboard">
@@ -127,8 +130,11 @@ if (!$usuario) {
         </main>
 
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
+    <!-- FOOTER GLOBAL -->
+    <?php include "../../includes/footer.php"; ?>
+    <!-- JS Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- JS global -->
+    <script src="<?= BASE_URL ?>assets/js/main.js"></script>
 </body>
 </html>

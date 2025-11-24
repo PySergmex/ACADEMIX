@@ -86,8 +86,8 @@ $pagina_activa = "materias";
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
 
-    <!-- CSS Admin -->
-    <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/admin.css">
+    <!-- CSS tablero -->
+    <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/tablero.css">
 </head>
 
 <body class="admin-dashboard">
@@ -225,10 +225,16 @@ $pagina_activa = "materias";
 
     </div>
 
-    <!-- JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="<?= BASE_URL ?>assets/js/main.js"></script>
 
+    <!-- FOOTER GLOBAL -->
+    <?php include "../../../includes/footer.php"; ?>
+
+    <!-- JS Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- JS global -->
+    <script src="<?= BASE_URL ?>assets/js/main.js"></script>
+    <!--Buscador--->
     <script>
     document.addEventListener("DOMContentLoaded", () => {
         if (typeof iniciarBuscadorEnTiempoReal === "function") {
