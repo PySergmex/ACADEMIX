@@ -208,7 +208,7 @@ $pagina_activa = 'usuarios';
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
     <!-- JS global -->
     <script src="<?= BASE_URL ?>assets/js/main.js"></script>
-    <!-- Buscador JS--->                                    
+    <!-- Buscador JS--->     
     <script>
     document.addEventListener("DOMContentLoaded", () => {
         iniciarBuscadorEnTiempoReal(

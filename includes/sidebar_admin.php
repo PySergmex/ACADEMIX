@@ -7,7 +7,7 @@ if (!isset($pagina_activa)) {
 require_once __DIR__ . "/config.php";
 ?>
 
-<aside class="sidebar d-flex flex-column align-items-center pt-4">
+<aside class="sidebar-admin d-flex flex-column align-items-center pt-4">
 
     <!-- Usuarios -->
     <a href="<?= BASE_URL ?>home/admin/index.php"
@@ -29,6 +29,5 @@ require_once __DIR__ . "/config.php";
        title="Dashboard">
         <i class="bi bi-speedometer2"></i>
     </a>
-
 
 </aside>

@@ -86,11 +86,11 @@ if (!$info) {
         rel="stylesheet" 
         href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
 
-    <!-- Estilos panel (se reutiliza admin.css para el layout) -->
-    <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/admin.css">
+    <!-- CSS tablero -->
+    <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/tablero.css">
 </head>
 
-<body class="admin-dashboard">
+<body class="prof-dashboard">
 
 <?php include "../../../includes/topbar_profesor.php"; ?>
 

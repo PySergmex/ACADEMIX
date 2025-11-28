@@ -7,7 +7,7 @@ if (!isset($pagina_activa)) {
 require_once __DIR__ . "/config.php";
 ?>
 
-<div class="sidebar">
+<aside class="sidebar-admin d-flex flex-column align-items-center pt-4">
 
     <!-- Módulo: Materias / Inscripción -->
     <a href="<?= BASE_URL ?>home/alumno/index.php" 
@@ -26,5 +26,6 @@ require_once __DIR__ . "/config.php";
        class="sidebar-icon <?= ($pagina_activa == 'dashboard') ? 'active' : '' ?>">
         <i class="bi bi-speedometer2"></i>
     </a>
+</aside>
 
-</div>
+

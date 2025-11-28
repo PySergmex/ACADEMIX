@@ -159,7 +159,7 @@ $tareas = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </div>
 
     <!-- FOOTER -->
-    <?php include "../../includes/footer.php"; ?>
+    <?php include "../../../includes/footer.php"; ?>
 
     <!-- JS Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>

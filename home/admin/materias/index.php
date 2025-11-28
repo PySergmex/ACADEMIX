@@ -245,3 +245,4 @@ $pagina_activa = "materias";
 
 </body>
 </html>
+<?php
