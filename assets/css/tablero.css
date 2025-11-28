@@ -1,5 +1,5 @@
 /* =======================================================
-   ACADEMIX - LAYOUT UNIFICADO (ADMIN + PROFESOR) 
+   ACADEMIX - LAYOUT UNIFICADO (ADMIN + PROFESOR + ALUMNO) 
    - Paletas por rol con variables CSS
 ========================================================== */
 body {
@@ -38,12 +38,22 @@ body {
     --card-bg: #ffffff;
 }
 
+/* ALUMNO (MISMA PALETA QUE PROFESOR PARA NO CAMBIAR DISEÑO) */
+.alumno-dashboard {
+    --layout-bg: #f5f6fa;
+    --sidebar-bg: #ececff;
+    --accent-main: #5146D9;
+    --accent-alt: #6FA8FF;
+    --card-bg: #ffffff;
+}
+
 /* ======================================================
    LAYOUT GENERAL
 ====================================================== */
 
 .admin-dashboard,
-.prof-dashboard {
+.prof-dashboard,
+.alumno-dashboard {  /* <- añadido alumno-dashboard */
     background: var(--layout-bg, var(--color-gris-fondo));
     min-height: 100vh;
     display: flex;
@@ -52,7 +62,7 @@ body {
 }
 
 /* ======================================================
-   TOPBAR (compartida para admin/profesor)
+   TOPBAR (compartida para admin/profesor/alumno)
 ====================================================== */
 
 .topbar {
@@ -128,17 +138,14 @@ body {
     padding: 32px;
 }
 
-/* En vistas donde no quieres tanto padding (ej: login interno),
-   puedes sobreescribir .content-area localmente si lo necesitas. */
-
 /* ======================================================
    TARJETAS Y FORMULARIOS
 ====================================================== */
 
-/* Card estándar de panel: se usaba como admin-form-card
-   y también en profesor, ahora unificada */
+/* Card estándar de panel: admin, profesor y alumno */
 .admin-form-card,
-.prof-card {
+.prof-card,
+.alumno-card {   /* <- añadimos alumno-card */
     background: var(--card-bg, #ffffff);
     border-radius: 18px;
     padding: 28px;
@@ -153,13 +160,17 @@ body {
 .admin-form-card textarea,
 .prof-card input,
 .prof-card select,
-.prof-card textarea {
+.prof-card textarea,
+.alumno-card input,      /* <- añadidos */
+.alumno-card select,
+.alumno-card textarea {
     border-radius: 10px;
 }
 
 /* Pequeño efecto hover en tarjetas de formulario */
 .admin-form-card:hover,
-.prof-card:hover {
+.prof-card:hover,
+.alumno-card:hover { /* <- añadimos alumno-card */
     transform: translateY(-2px);
     box-shadow: 0 10px 24px rgba(0,0,0,0.12);
 }

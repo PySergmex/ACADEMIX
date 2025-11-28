@@ -78,7 +78,7 @@ if (!empty($materia["materia_horario"])) {
     <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/tablero.css">
 </head>
 
-<body class="prof-dashboard">
+<body class="profesor-dashboard">
 
     <!--TOPBAR-->
     <?php include "../../includes/topbar_profesor.php"; ?>

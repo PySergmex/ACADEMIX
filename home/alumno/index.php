@@ -119,34 +119,17 @@ $materias = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                                 <?php 
                                 switch ($m["id_estatus_inscripcion"]) {
-                                    case 1: 
-                                        $estatus = "<span class='badge bg-warning'>Pendiente</span>";
-                                        $btn_retirar = true;
-                                        break;
-
-                                    case 2: 
-                                        $estatus = "<span class='badge bg-success'>Aprobada</span>";
-                                        $btn_retirar = false;
-                                        break;
-
-                                    case 3: 
-                                        $estatus = "<span class='badge bg-danger'>Rechazada</span>";
-                                        $btn_retirar = true;
-                                        break;
-
-                                    default: 
-                                        $estatus = "<span class='badge bg-secondary'>Desconocido</span>";
-                                        $btn_retirar = false;
-                                        break;
+                                    case 1: $estatus = "<span class='badge bg-warning'>Pendiente</span>"; break;
+                                    case 2: $estatus = "<span class='badge bg-success'>Aprobada</span>"; break;
+                                    case 3: $estatus = "<span class='badge bg-danger'>Rechazada</span>"; break;
+                                    default: $estatus = "<span class='badge bg-secondary'>Desconocido</span>"; break;
                                 }
                                 ?>
 
                                 <tr>
                                     <td><?= $index + 1 ?></td>
 
-                                    <td>
-                                        <strong><?= htmlspecialchars($m["materia_nombre"]) ?></strong>
-                                    </td>
+                                    <td><strong><?= htmlspecialchars($m["materia_nombre"]) ?></strong></td>
 
                                     <td><?= htmlspecialchars($m["materia_horario"] ?: "Sin horario") ?></td>
 
@@ -155,22 +138,11 @@ $materias = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                     <td><?= $estatus ?></td>
 
                                     <td class="text-center">
-
                                         <!-- VER -->
                                         <a href="ver_alumno_materia.php?id=<?= $m['id_materia'] ?>" 
-                                           class="btn btn-sm btn-outline-info me-1">
+                                           class="btn btn-sm btn-outline-info">
                                             <i class="bi bi-eye"></i>
                                         </a>
-
-                                        <!-- RETIRAR (si aplica) -->
-                                        <?php if ($btn_retirar): ?>
-                                            <a href="retirar_solicitud.php?id=<?= $m['id_inscripcion'] ?>" 
-                                               class="btn btn-sm btn-outline-danger"
-                                               onclick="return confirm('¿Seguro que deseas retirar la solicitud?');">
-                                                <i class="bi bi-x-circle"></i>
-                                            </a>
-                                        <?php endif; ?>
-
                                     </td>
                                 </tr>
 

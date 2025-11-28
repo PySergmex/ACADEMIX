@@ -32,15 +32,20 @@ $sql = "
     INNER JOIN tareas t ON t.id_materia = m.id_materia
     LEFT JOIN entregas e 
         ON e.id_tarea = t.id_tarea
-       AND e.id_usuario_estudiante = :alumno
-    WHERE i.id_usuario_estudiante = :alumno
+       AND e.id_usuario_estudiante = :alumno2
+    WHERE i.id_usuario_estudiante = :alumno1
       AND i.id_estatus_inscripcion = 2
     ORDER BY t.tarea_fecha_limite ASC
 ";
 
 $stmt = $pdo->prepare($sql);
-$stmt->execute([":alumno" => $id_alumno]);
+$stmt->execute([
+    ":alumno1" => $id_alumno,
+    ":alumno2" => $id_alumno
+]);
+
 $tareas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
 
 ?>
 <!DOCTYPE html>
@@ -62,20 +67,20 @@ $tareas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <body class="alumno-dashboard">
 
     <!-- TOPBAR -->
-    <?php include "../../includes/topbar_alumno.php"; ?>
+    <?php include "../../../includes/topbar_alumno.php"; ?>
 
     <div class="d-flex">
 
         <!-- SIDEBAR -->
         <?php 
             $pagina_activa = "tareas";
-            include "../../includes/sidebar_alumno.php";
+            include "../../../includes/sidebar_alumno.php";
         ?>
 
         <!-- CONTENIDO -->
         <main class="content-area">
-
-            <?php include "../../includes/alertas_alumno.php"; ?>
+            <!--Alertas-->
+            <?php include "../../../includes/alertas_alumno.php"; ?>
 
             <h3 class="fw-bold mb-3">Mis tareas</h3>
             <p class="text-muted mb-4">

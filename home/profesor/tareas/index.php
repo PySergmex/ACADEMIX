@@ -87,11 +87,11 @@ $tareas = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
 
-    <!-- CSS profesor -->
-    <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/profesor.css">
+    <!-- CSS tablero -->
+    <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/tablero.css">
 </head>
 
-<body class="profesor-dashboard">
+<body class="prof-dashboard">
     <!--Topbar Profesor-->
     <?php include "../../../includes/topbar_profesor.php"; ?>
     <div class="d-flex">

@@ -56,7 +56,7 @@ try {
             header("Location: " . BASE_URL . "home/profesor/index.php");
             break;
         case 3:
-            header("Location: " . BASE_URL . "home/estudiante/index.php");
+            header("Location: " . BASE_URL . "home/alumno/index.php");
             break;
         default:
             header("Location: " . BASE_URL . "index.php");

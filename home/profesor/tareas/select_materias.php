@@ -48,10 +48,11 @@ try {
         rel="stylesheet" 
         href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
 
-    <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/admin.css">
+    <!-- CSS tablero -->
+    <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/tablero.css">
 </head>
 
-<body class="admin-dashboard">
+<body class="prof-dashboard">
 
 <?php include "../../../includes/topbar_profesor.php"; ?>
 
@@ -113,32 +114,36 @@ try {
     </main>
 
 </div>
+    <!-- FOOTER GLOBAL -->
+    <?php include "../../../includes/footer.php"; ?>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-<script src="<?= BASE_URL ?>assets/js/main.js"></script>
+    <!-- JS Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 
-<!-- FILTRO EN TIEMPO REAL -->
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-    const input = document.getElementById("buscadorMaterias");
-    const items = document.querySelectorAll(".materia-item");
+    <!-- JS global -->
+    <script src="<?= BASE_URL ?>assets/js/main.js"></script>
+    <!--Buscador -->
+    <script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const input = document.getElementById("buscadorMaterias");
+        const items = document.querySelectorAll(".materia-item");
 
-    input.addEventListener("input", () => {
-        const texto = input.value.toLowerCase();
+        input.addEventListener("input", () => {
+            const texto = input.value.toLowerCase();
 
-        items.forEach(item => {
-            const nombre = item.querySelector("strong").textContent.toLowerCase();
-            const desc   = item.querySelector("small").textContent.toLowerCase();
+            items.forEach(item => {
+                const nombre = item.querySelector("strong").textContent.toLowerCase();
+                const desc   = item.querySelector("small").textContent.toLowerCase();
 
-            if (nombre.includes(texto) || desc.includes(texto)) {
-                item.style.display = "";
-            } else {
-                item.style.display = "none";
-            }
+                if (nombre.includes(texto) || desc.includes(texto)) {
+                    item.style.display = "";
+                } else {
+                    item.style.display = "none";
+                }
+            });
         });
     });
-});
-</script>
+    </script>
 
 </body>
 </html>
