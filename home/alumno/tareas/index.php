@@ -104,50 +104,65 @@ $tareas = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <div class="card-body table-responsive">
 
                     <table class="table table-hover align-middle">
-                        <thead>
-                            <tr>
-                                <th>Materia</th>
-                                <th>Tarea</th>
-                                <th>Fecha límite</th>
-                                <th>Ponderación</th>
-                                <th>Entrega</th>
-                            </tr>
-                        </thead>
+                    <thead>
+                        <tr>
+                            <th>Materia</th>
+                            <th>Tarea</th>
+                            <th>Fecha límite</th>
+                            <th>Ponderación</th>
+                            <th>Entrega</th>
+                            <th class="text-center">Acciones</th>
+                        </tr>
+                    </thead>
 
-                        <tbody>
-                        <?php if (empty($tareas)): ?>
-                            <tr>
-                                <td colspan="5" class="text-center text-muted py-4">
-                                    Por ahora no tienes tareas asignadas.
-                                </td>
-                            </tr>
+                    <tbody>
+                    <?php if (empty($tareas)): ?>
+                        <tr>
+                            <td colspan="6" class="text-center text-muted py-4">
+                                Por ahora no tienes tareas asignadas.
+                            </td>
+                        </tr>
 
-                        <?php else: ?>
-                            <?php foreach ($tareas as $t): ?>
-                            <tr>
-                                <td>
-                                    <strong><?= htmlspecialchars($t["materia_nombre"]) ?></strong>
-                                </td>
+                    <?php else: ?>
+                        <?php foreach ($tareas as $t): ?>
+                        <tr>
+                            <td>
+                                <strong><?= htmlspecialchars($t["materia_nombre"]) ?></strong>
+                            </td>
 
-                                <td><?= htmlspecialchars($t["tarea_titulo"]) ?></td>
+                            <td><?= htmlspecialchars($t["tarea_titulo"]) ?></td>
 
-                                <td><?= htmlspecialchars($t["tarea_fecha_limite"]) ?></td>
+                            <td><?= htmlspecialchars($t["tarea_fecha_limite"]) ?></td>
 
-                                <td><?= (float) $t["tarea_ponderacion"] ?>%</td>
+                            <td><?= (float) $t["tarea_ponderacion"] ?>%</td>
 
-                                <td>
-                                    <?php if ($t["id_entrega"]): ?>
-                                        <span class="badge bg-success">
-                                            Entregada el <?= htmlspecialchars($t["entrega_fecha"]) ?>
-                                        </span>
-                                    <?php else: ?>
-                                        <span class="badge bg-secondary">Sin entregar</span>
-                                    <?php endif; ?>
-                                </td>
-                            </tr>
-                            <?php endforeach; ?>
-                        <?php endif; ?>
-                        </tbody>
+                            <td>
+                                <?php if ($t["id_entrega"]): ?>
+                                    <span class="badge bg-success">
+                                        Entregada el <?= htmlspecialchars($t["entrega_fecha"]) ?>
+                                    </span>
+                                <?php else: ?>
+                                    <span class="badge bg-secondary">Sin entregar</span>
+                                <?php endif; ?>
+                            </td>
+
+                            <td class="text-center">
+
+                                <?php if (!$t["id_entrega"]): ?>
+                                    <a href="entregar_tarea.php?id=<?= $t['id_tarea'] ?>" 
+                                    class="btn btn-sm btn-primary">
+                                        <i class="bi bi-upload"></i> Entregar
+                                    </a>
+                                <?php else: ?>
+                                    <span class="text-muted small">Ya entregada</span>
+                                <?php endif; ?>
+
+                            </td>
+                        </tr>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
+                    </tbody>
+
 
                     </table>
 

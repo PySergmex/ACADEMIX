@@ -3,6 +3,9 @@ session_start();
 require_once "../../../includes/conexion.php";
 require_once "../../../includes/config.php";
 
+/* ============================
+   VALIDAR SOLO PROFESORES
+============================ */
 if (!isset($_SESSION["id_usuario"]) || $_SESSION["rol_id"] != 2) {
     header("Location: " . BASE_URL . "index.php");
     exit;
@@ -16,6 +19,9 @@ if ($id_tarea <= 0) {
     exit;
 }
 
+/* ============================
+   VALIDAR QUE LA TAREA ES DEL PROFESOR
+============================ */
 $q = $pdo->prepare("
     SELECT t.*, m.materia_nombre, m.id_materia
     FROM tareas t
@@ -37,6 +43,9 @@ if (!$tarea) {
 
 $id_materia = $tarea["id_materia"];
 
+/* ============================
+   CONSULTAR ENTREGAS + CALIFICACIONES
+============================ */
 $sql = "
     SELECT 
         u.id_usuario,
@@ -46,7 +55,6 @@ $sql = "
 
         e.id_entrega,
         e.entrega_fecha,
-        e.entrega_ruta_archivo,
         e.entrega_observaciones,
 
         c.id_calificacion,
@@ -75,7 +83,6 @@ $stmt->execute([
     ":materia" => $id_materia
 ]);
 
-
 $alumnos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
@@ -85,14 +92,10 @@ $alumnos = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <title>Entregas - Profesor | AcademiX</title>
 
     <!-- Bootstrap -->
-    <link 
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" 
-        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Iconos Bootstrap -->
-    <link 
-        rel="stylesheet" 
-        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
 
     <!-- CSS tablero -->
     <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/tablero.css">
@@ -136,13 +139,13 @@ $alumnos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <tbody>
                         <?php if (empty($alumnos)): ?>
                             <tr>
-                                <td colspan="4" class="text-center text-muted">
-                                    No hay alumnos inscritos.
-                                </td>
+                                <td colspan="4" class="text-center text-muted">No hay alumnos inscritos.</td>
                             </tr>
                         <?php else: ?>
                             <?php foreach ($alumnos as $a): ?>
                             <tr>
+
+                                <!-- ALUMNO -->
                                 <td>
                                     <strong>
                                         <?= htmlspecialchars($a["usuario_nombres"] . " " . $a["usuario_apellido_paterno"]) ?>
@@ -150,20 +153,20 @@ $alumnos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                     <small class="text-muted"><?= htmlspecialchars($a["usuario_correo"]) ?></small>
                                 </td>
 
+                                <!-- ENTREGA -->
                                 <td>
                                     <?php if ($a["id_entrega"]): ?>
-                                        <a href="<?= BASE_URL . 'uploads/entregas/' . $a['entrega_ruta_archivo'] ?>" 
-                                           target="_blank">
-                                            Ver archivo
-                                        </a><br>
+                                        <strong>Comentario:</strong><br>
+                                        <span><?= nl2br(htmlspecialchars($a["entrega_observaciones"])) ?></span><br>
                                         <small class="text-muted">
-                                            <?= $a["entrega_fecha"] ?>
+                                            Entregado el <?= $a["entrega_fecha"] ?>
                                         </small>
                                     <?php else: ?>
                                         <span class="text-muted">Sin entrega</span>
                                     <?php endif; ?>
                                 </td>
 
+                                <!-- CALIFICACIÓN -->
                                 <td>
                                     <?php if ($a["id_calificacion"]): ?>
                                         <strong><?= $a["calificacion_valor"] ?></strong><br>
@@ -175,10 +178,12 @@ $alumnos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                     <?php endif; ?>
                                 </td>
 
+                                <!-- ACCIONES -->
                                 <td class="text-center">
                                     <?php if ($a["id_entrega"]): ?>
-                                        <a href="calificar_entrega.php?id_tarea=<?= $id_tarea ?>&id_alumno=<?= $a['id_usuario'] ?>"
-                                           class="btn btn-sm btn-primary">
+                                        <a 
+                                            href="calificar_entrega.php?id_tarea=<?= $id_tarea ?>&id_alumno=<?= $a['id_usuario'] ?>"
+                                            class="btn btn-sm btn-primary">
                                             <?= $a["id_calificacion"] ? "Editar" : "Calificar" ?>
                                         </a>
                                     <?php else: ?>
@@ -197,8 +202,16 @@ $alumnos = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </div>
 
     </main>
-
 </div>
+
+<!-- FOOTER GLOBAL -->
+<?php include "../../../includes/footer.php"; ?>
+
+<!-- JS Bootstrap -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- JS global -->
+<script src="<?= BASE_URL ?>assets/js/main.js"></script>
 
 </body>
 </html>

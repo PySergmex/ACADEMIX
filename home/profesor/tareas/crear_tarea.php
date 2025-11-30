@@ -107,11 +107,6 @@ if (!$materia) {
                         <input type="number" name="ponderacion" class="form-control" min="1" max="100" required>
                     </div>
 
-                    <div class="mb-3">
-                        <label class="form-label">Archivo adjunto (opcional)</label>
-                        <input type="file" name="archivo" class="form-control">
-                    </div>
-
                     <div class="d-flex justify-content-between">
                         <a href="index.php?id_materia=<?= $id_materia ?>" class="btn btn-outline-secondary">
                             <i class="bi bi-arrow-left"></i> Volver

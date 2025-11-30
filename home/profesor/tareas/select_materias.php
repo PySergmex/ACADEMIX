@@ -77,19 +77,9 @@ try {
                     <p class="text-muted mb-0">No tienes materias asignadas por el momento.</p>
                 <?php else: ?>
 
-                    <!-- BUSCADOR -->
-                    <div class="mb-3">
-                        <input 
-                            type="text" 
-                            id="buscadorMaterias"
-                            class="form-control"
-                            placeholder="Buscar materia..."
-                        >
-                    </div>
-
-                    <ul class="list-group" id="listaMaterias">
+                    <ul class="list-group">
                         <?php foreach ($materias as $m): ?>
-                            <li class="list-group-item d-flex justify-content-between align-items-center materia-item">
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
                                 <div>
                                     <strong><?= htmlspecialchars($m["materia_nombre"]) ?></strong><br>
                                     <small class="text-muted">
@@ -114,6 +104,7 @@ try {
     </main>
 
 </div>
+
     <!-- FOOTER GLOBAL -->
     <?php include "../../../includes/footer.php"; ?>
 
@@ -122,28 +113,8 @@ try {
 
     <!-- JS global -->
     <script src="<?= BASE_URL ?>assets/js/main.js"></script>
-    <!--Buscador -->
-    <script>
-    document.addEventListener("DOMContentLoaded", () => {
-        const input = document.getElementById("buscadorMaterias");
-        const items = document.querySelectorAll(".materia-item");
-
-        input.addEventListener("input", () => {
-            const texto = input.value.toLowerCase();
-
-            items.forEach(item => {
-                const nombre = item.querySelector("strong").textContent.toLowerCase();
-                const desc   = item.querySelector("small").textContent.toLowerCase();
-
-                if (nombre.includes(texto) || desc.includes(texto)) {
-                    item.style.display = "";
-                } else {
-                    item.style.display = "none";
-                }
-            });
-        });
-    });
-    </script>
 
 </body>
 </html>
+
+

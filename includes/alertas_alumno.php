@@ -46,3 +46,14 @@ if (isset($_GET["error"])) {
             break;
     }
 }
+/* ===========================
+   TAREA ENTREGAS
+=========================== */
+if (isset($_GET["ok"]) && $_GET["ok"] === "entregada") {
+    alertAlumno("success", "Tarea entregada correctamente.");
+}
+
+if (isset($_GET["error"]) && $_GET["error"] === "ya_entregada") {
+    alertAlumno("warning", "Ya habías entregado esta tarea.");
+}
+

@@ -21,11 +21,18 @@ require_once __DIR__ . "/config.php";
         <i class="bi bi-list-check"></i>
     </a>
 
+    <!-- Módulo: Calificaciones -->
+    <a href="<?= BASE_URL ?>home/alumno/calificaciones/index.php" 
+       class="sidebar-icon <?= ($pagina_activa == 'calificaciones') ? 'active' : '' ?>">
+        <i class="bi bi-clipboard-data"></i>
+    </a>
+
     <!-- Dashboard -->
-    <a href="<?= BASE_URL ?>home/alumno/dashboard.php" 
+    <a href="<?= BASE_URL ?>home/alumno/dashboard/index.php" 
        class="sidebar-icon <?= ($pagina_activa == 'dashboard') ? 'active' : '' ?>">
         <i class="bi bi-speedometer2"></i>
     </a>
 </aside>
+
 
 

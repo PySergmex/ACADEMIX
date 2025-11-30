@@ -22,9 +22,17 @@ require_once __DIR__ . "/config.php";
     </a>
 
     <!-- TAREAS -->
-    <a href="<?= BASE_URL ?>home/profesor/tareas/select_materias.php" 
-    class="sidebar-icon <?= ($pagina_activa == 'tareas') ? 'active' : ''; ?>">
+    <a href="<?= BASE_URL ?>home/profesor/tareas/select_materias.php"
+       class="sidebar-icon <?= ($pagina_activa == 'tareas') ? 'active' : ''; ?>"
+       title="Tareas">
         <i class="bi bi-journal-check"></i>
+    </a>
+
+    <!-- ALUMNOS / CALIFICACIONES -->
+    <a href="<?= BASE_URL ?>home/profesor/calificaciones/index.php"
+       class="sidebar-icon <?= ($pagina_activa == 'calificaciones') ? 'active' : ''; ?>"
+       title="Alumnos / Calificaciones">
+        <i class="bi bi-people"></i>
     </a>
 
     <!-- DASHBOARD -->

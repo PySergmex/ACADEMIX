@@ -1,7 +1,7 @@
 <?php
 session_start();
-require_once "../../../includes/conexion.php";
-require_once "../../../includes/config.php";
+require_once "../../includes/config.php";
+require_once "../../includes/conexion.php";
 
 /* ============================
    VALIDAR SOLO PROFESORES
@@ -11,139 +11,159 @@ if (!isset($_SESSION["id_usuario"]) || $_SESSION["rol_id"] != 2) {
     exit;
 }
 
-/* ============================
-   VALIDAR ID MATERIA
-============================ */
-if (!isset($_GET["id_materia"])) {
-    header("Location: ../index.php");
-    exit;
-}
-
-$id_materia = intval($_GET["id_materia"]);
 $id_maestro = (int) $_SESSION["id_usuario"];
-
-/* ============================
-   VALIDAR PROPIEDAD DE LA MATERIA
-============================ */
-$stmt = $pdo->prepare("
-    SELECT materia_nombre 
-    FROM materias 
-    WHERE id_materia = :id 
-      AND id_usuario_maestro = :m
-");
-$stmt->execute([
-    ":id" => $id_materia,
-    ":m"  => $id_maestro
-]);
-$materia = $stmt->fetch(PDO::FETCH_ASSOC);
-
-if (!$materia) {
-    die("No tienes permiso para crear tareas en esta materia.");
-}
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Nueva Tarea | AcademiX</title>
+    <title>Crear materia | Profesor - AcademiX</title>
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
-
-    <!-- CSS específico de profesor -->
-    <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/profesor.css">
-
-    <!-- Bootstrap Icons -->
+    <!-- Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
-
-    <!-- CSS tablero (layout general) -->
+    <!-- CSS tablero -->
     <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/tablero.css">
+
 </head>
 
-<body class="profesor-dashboard">
+<body class="prof-dashboard">
 
-<div class="layout-wrapper"><!-- CONTIENE sidebar + main -->
+<?php include "../../includes/topbar_profesor.php"; ?>
 
-    <!-- SIDEBAR -->
+<div class="d-flex">
+
     <?php 
-        $pagina_activa = "tareas";
-        include "../../../includes/sidebar_profesor.php"; 
+        $pagina_activa = "materias";
+        include "../../includes/sidebar_profesor.php"; 
     ?>
 
-    <!-- PANEL PRINCIPAL -->
-    <div class="main-panel">
+    <main class="content-area p-4">
 
-        <!-- TOPBAR -->
-        <?php include "../../../includes/topbar_profesor.php"; ?>
+        <?php include "../../includes/alertas_profesor.php"; ?>
 
-        <!-- CONTENIDO CENTRAL -->
-        <main class="content-area p-4">
-            <!-- Alertas -->
-            <?php include "../../../includes/alertas_profesor.php"; ?>
+        <h3 class="mb-3">Crear nueva materia</h3>
 
-            <h3 class="mb-3">
-                Nueva tarea — 
-                <span class="text-primary">
-                    <?= htmlspecialchars($materia["materia_nombre"]); ?>
-                </span>
-            </h3>
+        <div class="card admin-form-card shadow-sm">
+            <div class="card-body">
 
-            <div class="admin-form-card">
+                <form action="procesar_crear_materia.php" method="POST">
+                    <!-- El id del maestro se toma de la sesión en procesar_crear_materia.php -->
 
-                <form action="procesar_crear_tarea.php" method="POST" enctype="multipart/form-data">
-                    <input type="hidden" name="id_materia" value="<?= $id_materia ?>">
-
+                    <!-- NOMBRE -->
                     <div class="mb-3">
-                        <label class="form-label">Título de la tarea</label>
-                        <input type="text" name="titulo" class="form-control" required>
+                        <label class="form-label">Nombre de la materia</label>
+                        <input 
+                            type="text" 
+                            name="materia_nombre" 
+                            class="form-control" 
+                            placeholder="Ej. Matemáticas I"
+                            required
+                        >
                     </div>
 
+                    <!-- DESCRIPCIÓN -->
                     <div class="mb-3">
                         <label class="form-label">Descripción</label>
-                        <textarea name="descripcion" class="form-control" rows="4"></textarea>
+                        <textarea 
+                            name="materia_descripcion" 
+                            class="form-control" 
+                            rows="3"
+                            placeholder="Descripción breve de la materia..."
+                        ></textarea>
                     </div>
 
+                    <!-- DÍAS DE CLASE -->
                     <div class="mb-3">
-                        <label class="form-label">Fecha límite</label>
-                        <input type="datetime-local" name="fecha_limite" class="form-control" required>
+                        <label class="form-label">Días de clase</label><br>
+
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" name="dias[]" value="Lun">
+                            <label class="form-check-label">Lun</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" name="dias[]" value="Mar">
+                            <label class="form-check-label">Mar</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" name="dias[]" value="Mie">
+                            <label class="form-check-label">Mie</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" name="dias[]" value="Jue">
+                            <label class="form-check-label">Jue</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" name="dias[]" value="Vie">
+                            <label class="form-check-label">Vie</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" name="dias[]" value="Sáb">
+                            <label class="form-check-label">Sáb</label>
+                        </div>
+
+                        <div class="form-text">
+                            Puedes seleccionar uno o varios días.
+                        </div>
                     </div>
 
-                    <div class="mb-3">
-                        <label class="form-label">Ponderación (%)</label>
-                        <input type="number" name="ponderacion" class="form-control" min="1" max="100" required>
+                    <!-- HORARIO -->
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Hora de inicio</label>
+                            <input 
+                                type="time" 
+                                name="hora_inicio" 
+                                class="form-control" 
+                                required
+                            >
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label">Hora de fin</label>
+                            <input 
+                                type="time" 
+                                name="hora_fin" 
+                                class="form-control" 
+                                required
+                            >
+                        </div>
                     </div>
 
-                    <div class="mb-3">
-                        <label class="form-label">Archivo adjunto (opcional)</label>
-                        <input type="file" name="archivo" class="form-control">
+                    <div class="form-text mb-3">
+                        El horario se generará automáticamente. Ejemplo: <strong>Lun-Mar 08:00-10:00</strong>
                     </div>
 
+                    <!-- BOTONES -->
                     <div class="d-flex justify-content-between">
-                        <a href="index.php?id_materia=<?= $id_materia ?>" class="btn btn-outline-secondary">
+                        <a href="index.php" class="btn btn-outline-secondary">
                             <i class="bi bi-arrow-left"></i> Volver
                         </a>
 
-                        <button class="btn btn-primary" type="submit">
-                            <i class="bi bi-save"></i> Crear tarea
+                        <button type="submit" class="btn btn-primary">
+                            <i class="bi bi-check-square me-1"></i> Crear materia
                         </button>
                     </div>
+
                 </form>
 
             </div>
-        </main>
+        </div>
 
-        <!-- FOOTER GLOBAL -->
-        <?php include "../../../includes/footer.php"; ?>
+    </main>
 
-    </div><!-- /.main-panel -->
-</div><!-- /.layout-wrapper -->
+</div>
+
+<?php include "../../includes/footer.php"; ?>
 
 <!-- JS Bootstrap -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-
 <!-- JS global -->
 <script src="<?= BASE_URL ?>assets/js/main.js"></script>
 
 </body>
 </html>
+
+
 
