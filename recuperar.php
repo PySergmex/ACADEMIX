@@ -6,10 +6,6 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <title>Recuperar contraseña</title>
-    <!-- ICONO -->
-    <link rel="icon" type="image/x-icon" href="assets/imgs/logo-ico.png?v=1">
-
-    <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
@@ -31,7 +27,9 @@ session_start();
     <a href="index.php" class="d-block mt-3 text-center">Volver al login</a>
 
 </div>
-    <!-- PROYECTO REALIZADO BY: SERGIO EDUARDO CERVANTES MATA-->
+
 </body>
 </html>
+
+
 
