@@ -3,17 +3,13 @@ session_start();
 require_once "../../../includes/conexion.php";
 require_once "../../../includes/config.php";
 
-/* ==========================================
-   VALIDAR PROFESOR
-========================================== */
+/*Validar Profesor*/
 if (!isset($_SESSION["id_usuario"]) || $_SESSION["rol_id"] != 2) {
     header("Location: " . BASE_URL . "index.php");
     exit;
 }
 
-/* ==========================================
-   VALIDAR ID
-========================================== */
+/*Validar ID*/
 if (!isset($_GET["id"])) {
     header("Location: ../select_materias.php");
     exit;
@@ -22,9 +18,9 @@ if (!isset($_GET["id"])) {
 $id_tarea = intval($_GET["id"]);
 $id_maestro = $_SESSION["id_usuario"];
 
-/* ==========================================
-   OBTENER TAREA
-========================================== */
+
+/*Obtener tarea*/
+
 $stmt = $pdo->prepare("
     SELECT 
         t.*,
@@ -49,19 +45,22 @@ if (!$tarea || $tarea["id_usuario_maestro"] != $id_maestro) {
 <head>
     <meta charset="UTF-8">
     <title>Editar tarea | Profesor - AcademiX</title>
-
-    <link rel="stylesheet" href="../../../assets/css/profesor.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+    <!-- ICONO -->
+    <link rel="icon" type="image/x-icon" href="<?= BASE_URL ?>assets/imgs/logo-ico.png?v=1">
+    <!--Bootsrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+     <!--Iconos Bootstrap-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
     <!-- CSS tablero -->
     <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/tablero.css">
 </head>
 
 <body class="prof-dashboard">
-
+<!--Topbar Profesor-->
 <?php include "../../../includes/topbar_profesor.php"; ?>
 
 <div class="d-flex">
-
+<!--Sidebar Profesor-->
 <?php 
     $pagina_activa = "tareas";
     include "../../../includes/sidebar_profesor.php";
@@ -104,30 +103,7 @@ if (!$tarea || $tarea["id_usuario_maestro"] != $id_maestro) {
                        step="0.01" min="0" max="100"
                        value="<?= $tarea["tarea_ponderacion"] ?>" required>
             </div>
-
-            <!-- ARCHIVO ADJUNTO -->
-            <div class="mb-3">
-                <label class="form-label">Archivo adjunto</label>
-
-                <?php if (!empty($tarea["tarea_archivo"])): ?>
-                    <p class="text-muted">
-                        Archivo actual: 
-                        <a href="../../../uploads/tareas/<?= $tarea['tarea_archivo'] ?>" target="_blank">
-                            <?= $tarea["tarea_archivo"] ?>
-                        </a>
-                    </p>
-
-                    <div class="form-check mb-2">
-                        <input class="form-check-input" type="checkbox" name="eliminar_archivo" value="1">
-                        <label class="form-check-label text-danger">
-                            Eliminar archivo actual
-                        </label>
-                    </div>
-                <?php endif; ?>
-
-                <input type="file" name="archivo" class="form-control">
-                <small class="text-muted">Opcional. PDF, imágenes, DOCX, ZIP, etc.</small>
-            </div>
+       
 
             <!-- BOTONES -->
             <div class="d-flex justify-content-between mt-4">
@@ -148,8 +124,11 @@ if (!$tarea || $tarea["id_usuario_maestro"] != $id_maestro) {
 </main>
 
 </div>
-     <!--JS-->                               
+    <!-- Footer -->
+    <?php include "../../../includes/footer.php"; ?>
+    <!-- JS Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- JS global -->
     <script src="<?= BASE_URL ?>assets/js/main.js"></script>
 </body>
 </html>

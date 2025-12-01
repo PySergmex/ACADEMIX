@@ -1,10 +1,7 @@
 <?php
 if (!isset($_SESSION)) session_start();
 
-/* 
-   Alertas para login, registro y recuperación.
-   Se usan mensajes guardados en $_SESSION.
-*/
+/*Alertas logins*/
 
 function alertaLogin($tipo, $mensaje) {
     echo "

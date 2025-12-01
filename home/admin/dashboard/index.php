@@ -25,9 +25,7 @@ $alumnos = $pdo->query("SELECT COUNT(*) FROM usuarios WHERE id_rol = 3")->fetchC
 // Total Materias
 $materias = $pdo->query("SELECT COUNT(*) FROM materias")->fetchColumn();
 
-// -----------------------------------------
-// Estatus de usuarios (para gráfico donut)
-// -----------------------------------------
+//Estatus de usuario
 $estatusData = $pdo->query("
     SELECT e.estatus_usuario_descripcion, COUNT(*) AS total
     FROM usuarios u
@@ -35,9 +33,8 @@ $estatusData = $pdo->query("
     GROUP BY e.id_estatus_usuario
 ")->fetchAll(PDO::FETCH_ASSOC);
 
-// -----------------------------------------
-// Promedio de materias (para gráfico barras)
-// -----------------------------------------
+//Promedio de usuario
+//Gráfico de barras
 $promedios = $pdo->query("
     SELECT m.materia_nombre, 
            AVG(h.historial_calificacion_final) AS promedio
@@ -53,27 +50,26 @@ $promedios = $pdo->query("
 <head>
     <meta charset="UTF-8">
     <title>Dashboard Admin - AcademiX</title>
-
-    <!-- Bootstrap -->
+    <!-- ICONO -->
+    <link rel="icon" type="image/x-icon" href="<?= BASE_URL ?>assets/imgs/logo-ico.png?v=1">
+    <!--Bootsrap-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Icons -->
+     <!--Iconos Bootstrap-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
-
     <!-- CSS tablero -->
     <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/tablero.css">
-
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body class="admin-dashboard">
-
+<!--Topbar Admin-->
 <?php include "../../../includes/topbar_admin.php"; ?>
 
 <div class="d-flex">
-
+    
     <?php $pagina_activa = "dashboard"; ?>
+    <!--Sidebar Admin-->
     <?php include "../../../includes/sidebar_admin.php"; ?>
 
     <main class="content-area">
@@ -137,7 +133,7 @@ $promedios = $pdo->query("
     </main>
 
 </div>
-    <!-- FOOTER GLOBAL -->
+    <!--Footer-->
     <?php include "../../../includes/footer.php"; ?>
     <!-- JS Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>

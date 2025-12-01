@@ -3,17 +3,13 @@ session_start();
 require_once "../../../includes/conexion.php";
 require_once "../../../includes/config.php";
 
-/* ==========================================
-   VALIDAR PROFESOR
-========================================== */
+/*Validar Profesor*/
 if (!isset($_SESSION["id_usuario"]) || $_SESSION["rol_id"] != 2) {
     header("Location: " . BASE_URL . "index.php");
     exit;
 }
 
-/* ==========================================
-   VALIDAR ID
-========================================== */
+/*Validar ID*/
 if (!isset($_GET["id"])) {
     header("Location: ../select_materias.php");
     exit;
@@ -22,9 +18,7 @@ if (!isset($_GET["id"])) {
 $id_tarea = intval($_GET["id"]);
 $id_maestro = $_SESSION["id_usuario"];
 
-/* ==========================================
-   OBTENER TAREA Y VALIDAR QUE SEA DEL PROFESOR
-========================================== */
+/*Obtener tarea para validar que sea el profesor*/
 $stmt = $pdo->prepare("
     SELECT t.*, m.id_usuario_maestro
     FROM tareas t
@@ -40,22 +34,7 @@ if (!$tarea || $tarea["id_usuario_maestro"] != $id_maestro) {
 }
 
 $id_materia = $tarea["id_materia"];
-
-/* ==========================================
-   ELIMINAR ARCHIVO SI EXISTE
-========================================== */
-if (!empty($tarea["tarea_archivo"])) {
-
-    $ruta = "../../../uploads/tareas/" . $tarea["tarea_archivo"];
-
-    if (file_exists($ruta)) {
-        unlink($ruta);
-    }
-}
-
-/* ==========================================
-   ELIMINAR LA TAREA
-========================================== */
+/*Eliminar Tarea*/
 try {
     $stmt = $pdo->prepare("DELETE FROM tareas WHERE id_tarea = :id LIMIT 1");
     $stmt->execute([":id" => $id_tarea]);

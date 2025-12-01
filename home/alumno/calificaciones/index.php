@@ -3,9 +3,7 @@ session_start();
 require_once "../../../includes/config.php";
 require_once "../../../includes/conexion.php";
 
-/* ============================
-   VALIDAR SOLO ALUMNOS
-============================ */
+/*Validar solo alumnos*/
 if (!isset($_SESSION["id_usuario"]) || $_SESSION["rol_id"] != 3) {
     header("Location: " . BASE_URL . "index.php");
     exit;
@@ -13,9 +11,7 @@ if (!isset($_SESSION["id_usuario"]) || $_SESSION["rol_id"] != 3) {
 
 $id_alumno = (int) $_SESSION["id_usuario"];
 
-/* ============================
-   OBTENER MATERIAS DEL ALUMNO
-============================ */
+/*Obtener materias*/
 $sql = "
     SELECT 
         m.id_materia,
@@ -32,10 +28,7 @@ $stmt = $pdo->prepare($sql);
 $stmt->execute([":alumno" => $id_alumno]);
 $materias = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-/* ============================
-   CALCULAR PROMEDIO POR MATERIA
-   (Ponderado por tarea_ponderacion)
-============================ */
+/*Promedio materia*/
 $promedios = []; // id_materia => promedio (float|null)
 
 foreach ($materias as $m) {
@@ -76,9 +69,7 @@ foreach ($materias as $m) {
     $promedios[$id_materia] = $promAlumno;
 }
 
-/* ============================
-   MARCAR SECCIÓN ACTIVA
-============================ */
+/*Página Activa*/
 $pagina_activa = 'calificaciones';
 ?>
 <!DOCTYPE html>
@@ -86,27 +77,26 @@ $pagina_activa = 'calificaciones';
 <head>
     <meta charset="UTF-8">
     <title>Mis calificaciones | Alumno - AcademiX</title>
-
-    <!-- Bootstrap -->
+    <!-- ICONO -->
+    <link rel="icon" type="image/x-icon" href="<?= BASE_URL ?>assets/imgs/logo-ico.png?v=1">
+    <!--Bootsrap-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Icons -->
+     <!--Iconos Bootstrap-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
-
     <!-- CSS tablero -->
     <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/tablero.css">
 </head>
 
 <body class="alumno-dashboard">
-
+<!--Topbar alumno-->
 <?php include "../../../includes/topbar_alumno.php"; ?>
 
 <div class="d-flex">
 
-    <!-- SIDEBAR ALUMNO -->
+    <!--Sidebar alumno-->
     <?php include "../../../includes/sidebar_alumno.php"; ?>
 
-    <!-- CONTENIDO -->
+    <!--Contenido Principal-->
     <main class="content-area p-4">
 
         <?php 
@@ -187,7 +177,7 @@ $pagina_activa = 'calificaciones';
     </main>
 
 </div>
-<!-- Footer -->
+<!--Footer-->
 <?php include "../../../includes/footer.php"; ?>
 <!-- JS Bootstrap -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>

@@ -1,4 +1,6 @@
-/* Paleta principal */
+/*ACADEMIX PROYECTO REALIZADO BY: SERGIO EDUARDO CERVANTES MATA*/
+
+/*Paleta de colores por variable*/
 :root {
     --primario: #0D1028;
     --secundario-1: #5146D9;
@@ -10,8 +12,11 @@
     --gris-oscuro: #1A1C2D;
     --gris-claro: #ECECEC;
     --blanco: #FFFFFF;
-    --violeta-suave: #D8D3FF; 
+    --violeta-suave: #D8D3FF;
 }
+
+
+/*Layout de logins*/
 
 /* Panel izquierdo */
 .login-left {
@@ -27,11 +32,11 @@
     color: var(--secundario-1);
 }
 
-/* Tabs */
+/* Tabs superiores (Sign In / Sign Up) */
 .tab-btn {
     padding: 8px 26px;
     background: var(--gris-oscuro);
-    color: white;
+    color: #fff;
     border-radius: 30px;
     font-weight: 500;
     text-decoration: none;
@@ -49,7 +54,7 @@
     opacity: 0.5;
 }
 
-/* Título */
+/* Subrayados de títulos */
 .underline {
     width: 150px;
     height: 3px;
@@ -64,7 +69,10 @@
     margin-top: -5px;
 }
 
-/* Tarjeta del formulario */
+
+/*Formularios y cards*/
+
+/* Tarjetas contenedoras de formularios */
 .form-card,
 .form-card1 {
     border-radius: 20px;
@@ -80,7 +88,7 @@
     opacity: 0.9;
 }
 
-/* Inputs */
+/* Etiquetas e inputs */
 .custom-label {
     font-weight: 600;
     color: var(--primario);
@@ -99,15 +107,15 @@
     border-bottom-color: var(--secundario-1);
 }
 
-/* Botón */
+/* Botón de acción principal */
 .submit-btn {
     background: var(--gris-oscuro);
-    color: white;
+    color: #fff;
     padding: 12px 0;
     border-radius: 12px;
     width: 50%;
     font-weight: 600;
-    box-shadow: 3px 4px 6px rgba(0,0,0,0.25);
+    box-shadow: 3px 4px 6px rgba(0, 0, 0, 0.25);
 }
 
 .submit-btn:hover {
@@ -115,35 +123,9 @@
     color: var(--primario);
 }
 
-/* Animaciones */
-.fade-in {
-    animation: fadeIn 0.8s ease-out forwards;
-}
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to   { opacity: 1; transform: translateY(0); }
-}
+/*Loader Inicio*/
 
-.slide-left {
-    animation: slideLeft 0.4s ease-out forwards;
-}
-
-@keyframes slideLeft {
-    from { opacity: 0; transform: translateX(40px); }
-    to   { opacity: 1; transform: translateX(0); }
-}
-
-.slide-right {
-    animation: slideRight 0.4s ease-out forwards;
-}
-
-@keyframes slideRight {
-    from { opacity: 0; transform: translateX(-40px); }
-    to   { opacity: 1; transform: translateX(0); }
-}
-
-/* Loader */
 .loader-overlay {
     position: fixed;
     top: 0;
@@ -163,20 +145,9 @@
     animation: glow 1.8s ease-in-out infinite alternate;
 }
 
-@keyframes glow {
-    0% {
-        filter: drop-shadow(0 0 2px #6FA8FF) 
-                drop-shadow(0 0 6px #5146D9);
-        transform: scale(1);
-    }
-    100% {
-        filter: drop-shadow(0 0 6px #FF9BBF)
-                drop-shadow(0 0 14px #5146D9);
-        transform: scale(1.07);
-    }
-}
 
-/* Toasts */
+/*Alertas*/
+
 #app-toast-container {
     position: fixed;
     top: 20px;
@@ -197,7 +168,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
     transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
@@ -236,13 +207,12 @@
     background: #dc3545;
 }
 
-/* ===============================
-   FOOTER GLOBAL ACADEMIX
-   =============================== */
+
+/*Footer*/
 
 .footer-global {
     background-color: #0D1028;
-    color: white;
+    color: #fff;
     text-align: center;
     padding: 20px;
     width: 100%;
@@ -252,7 +222,6 @@
     max-width: 1200px;
     margin: auto;
     padding: 0 20px;
-
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -278,7 +247,74 @@
     color: #6FA8FF; /* acento */
 }
 
-/* Responsivo */
+
+/*Animaciones de la libreria Animate.css*/
+
+/* Clases utilitarias de animación */
+.fade-in {
+    animation: fadeIn 0.8s ease-out forwards;
+}
+
+.slide-left {
+    animation: slideLeft 0.4s ease-out forwards;
+}
+
+.slide-right {
+    animation: slideRight 0.4s ease-out forwards;
+}
+
+/* Secuencias de animación */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideLeft {
+    from {
+        opacity: 0;
+        transform: translateX(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideRight {
+    from {
+        opacity: 0;
+        transform: translateX(-40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes glow {
+    0% {
+        filter:
+            drop-shadow(0 0 2px #6FA8FF)
+            drop-shadow(0 0 6px #5146D9);
+        transform: scale(1);
+    }
+    100% {
+        filter:
+            drop-shadow(0 0 6px #FF9BBF)
+            drop-shadow(0 0 14px #5146D9);
+        transform: scale(1.07);
+    }
+}
+
+
+/*Kayframe responsive footer*/
+
 @media (max-width: 600px) {
     .footer-inner {
         flex-direction: column;

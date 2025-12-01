@@ -3,9 +3,7 @@ session_start();
 require_once "../../includes/conexion.php";
 require_once "../../includes/config.php";
 
-/* =======================================================
-   VALIDAR SOLO PROFESORES
-======================================================= */
+/*Validar solo profesores*/
 if (!isset($_SESSION["id_usuario"]) || $_SESSION["rol_id"] != 2) {
     header("Location: " . BASE_URL . "index.php");
     exit;
@@ -13,9 +11,7 @@ if (!isset($_SESSION["id_usuario"]) || $_SESSION["rol_id"] != 2) {
 
 $id_maestro = $_SESSION["id_usuario"];
 
-/* =======================================================
-   VALIDAR ID MATERIA
-======================================================= */
+/*Validar ID*/
 if (!isset($_GET["id"])) {
     header("Location: index.php");
     exit;
@@ -23,9 +19,7 @@ if (!isset($_GET["id"])) {
 
 $id_materia = intval($_GET["id"]);
 
-/* =======================================================
-   OBTENER DATOS DE LA MATERIA
-======================================================= */
+/*Obtener datos de la materia*/
 $stmt = $pdo->prepare("
     SELECT 
         id_materia,
@@ -45,9 +39,7 @@ if (!$materia || $materia["id_usuario_maestro"] != $id_maestro) {
     die("<h3 style='padding:20px; color:red;'>No tienes permiso para editar esta materia.</h3>");
 }
 
-/* =======================================================
-   PROCESAR HORARIO (para mostrar días seleccionados)
-======================================================= */
+/*Horario*/
 $dias_seleccionados = [];
 $hora_inicio = "";
 $hora_fin = "";
@@ -69,10 +61,11 @@ if (!empty($materia["materia_horario"])) {
 <head>
     <meta charset="UTF-8">
     <title>Editar materia | Profesor - AcademiX</title>
-
-    <!--Bootstrap-->
+    <!-- ICONO -->
+    <link rel="icon" type="image/x-icon" href="<?= BASE_URL ?>assets/imgs/logo-ico.png?v=1">
+    <!--Bootsrap-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!--Icons-->
+     <!--Iconos Bootstrap-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
     <!-- CSS tablero -->
     <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/tablero.css">
@@ -80,18 +73,18 @@ if (!empty($materia["materia_horario"])) {
 
 <body class="prof-dashboard">
 
-    <!--TOPBAR-->
+    <!--Topbar Profesor-->
     <?php include "../../includes/topbar_profesor.php"; ?>
 
     <div class="d-flex">
 
-        <!--SIDEBAR-->
+        <!--Sidebar Profesor-->
         <?php 
             $pagina_activa = "materias";
             include "../../includes/sidebar_profesor.php"; 
         ?>
 
-        <!--CONTENIDO-->
+        <!--Contenido Principal-->
         <main class="content-area">
 
             <h3 class="mb-4 fw-bold">Editar materia</h3>
@@ -179,7 +172,7 @@ if (!empty($materia["materia_horario"])) {
                         </small>
                     </div>
 
-                    <!-- BOTONES -->
+                    <!--Botones-->
                     <div class="d-flex justify-content-between">
 
                         <a href="index.php" class="btn btn-outline-secondary">
@@ -199,7 +192,7 @@ if (!empty($materia["materia_horario"])) {
         </main>
 
     </div>
-    <!-- FOOTER -->
+    <!--Footer-->
     <?php include "../../includes/footer.php"; ?>
     <!--Bootstrap JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>

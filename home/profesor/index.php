@@ -37,9 +37,11 @@ try {
 <head>
     <meta charset="UTF-8">
     <title>Mis Materias - Profesor | AcademiX</title>
-    <!-- Bootstrap -->
+    <!-- ICONO -->
+    <link rel="icon" type="image/x-icon" href="<?= BASE_URL ?>assets/imgs/logo-ico.png?v=1">
+    <!--Bootsrap-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Icons -->
+     <!--Iconos Bootstrap-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
     <!-- CSS tablero -->
     <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/tablero.css">
@@ -54,9 +56,9 @@ try {
             $pagina_activa = "materias";
             include "../../includes/sidebar_profesor.php"; 
         ?>
-        <!-- CONTENIDO -->
+        <!--Contenido Principal-->
         <main class="content-area p-4">
-
+            <!--Alertas-->
             <?php include "../../includes/alertas_profesor.php"; ?>
 
             <div class="d-flex justify-content-between align-items-center mb-3">
@@ -150,7 +152,7 @@ try {
         </main>
 
     </div>
-    <!-- FOOTER GLOBAL -->
+    <!--Footer-->
     <?php include "../../includes/footer.php"; ?>
     <!-- JS Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>

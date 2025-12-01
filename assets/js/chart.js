@@ -1,10 +1,6 @@
-/* =======================================
-   DASHBOARD ADMIN – JS CENTRALIZADO
-======================================= */
+//ACADEMIX PROYECTO REALIZADO BY: SERGIO EDUARDO CERVANTES MATA
 
-// -------------------------
-// Animación de contadores
-// -------------------------
+//Animación de los contadores
 export function iniciarContadores() {
     const counters = document.querySelectorAll(".stat-number");
 
@@ -27,9 +23,7 @@ export function iniciarContadores() {
     });
 }
 
-// -------------------------
-// Donut de Estatus
-// -------------------------
+//Estatus de la gráfica de dona
 export function cargarGraficaEstatus(canvasId, labels, data) {
     const ctx = document.getElementById(canvasId);
 
@@ -63,9 +57,7 @@ export function cargarGraficaEstatus(canvasId, labels, data) {
     });
 }
 
-// -------------------------
-// Gráfica de Barras
-// -------------------------
+//Gráfica de barras
 export function cargarGraficaPromedios(canvasId, labels, data) {
     const ctx = document.getElementById(canvasId);
 

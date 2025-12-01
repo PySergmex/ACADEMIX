@@ -41,5 +41,5 @@ require_once __DIR__ . "/config.php";
        title="Dashboard">
         <i class="bi bi-speedometer2"></i>
     </a>
-
+<!-- PROYECTO REALIZADO BY: SERGIO EDUARDO CERVANTES MATA-->
 </aside>

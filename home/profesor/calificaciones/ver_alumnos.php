@@ -3,17 +3,13 @@ session_start();
 require_once "../../../includes/conexion.php";
 require_once "../../../includes/config.php";
 
-/* ===========================
-   VALIDAR SOLO PROFESORES
-=========================== */
+/*Validar solo profesores*/
 if (!isset($_SESSION["id_usuario"]) || $_SESSION["rol_id"] != 2) {
     header("Location: " . BASE_URL . "index.php");
     exit;
 }
 
-/* ===========================
-   VALIDAR MATERIA
-=========================== */
+/*Validar Materia*/
 $id_materia = isset($_GET["id_materia"]) ? intval($_GET["id_materia"]) : 0;
 $id_maestro = (int) $_SESSION["id_usuario"];
 
@@ -22,9 +18,7 @@ if ($id_materia <= 0) {
     exit;
 }
 
-/* ===========================
-   OBTENER DATOS DE LA MATERIA
-=========================== */
+/*Obtener los datos de la materia*/
 $sql = "
     SELECT materia_nombre 
     FROM materias 
@@ -44,15 +38,11 @@ if (!$materia) {
     exit;
 }
 
-/* ===========================
-   BUSCADOR (ALUMNOS)
-=========================== */
+/*Buscar alumnos*/
 $busqueda = $_GET["busqueda"] ?? "";
 $param = "%" . $busqueda . "%";
 
-/* ===========================
-   LISTAR ALUMNOS INSCRITOS
-=========================== */
+/*Alumnos inscritos*/
 if ($busqueda !== "") {
     // Con filtro por nombre / apellido paterno / correo
     $sql = "
@@ -100,9 +90,7 @@ if ($busqueda !== "") {
 
 $alumnos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-/* ===========================
-   OBTENER PROMEDIOS PONDERADOS
-=========================== */
+/*Obtener promedios*/
 $promedios = [];
 
 foreach ($alumnos as $a) {
@@ -130,13 +118,11 @@ foreach ($alumnos as $a) {
         $acumulado = 0;
 
         foreach ($rows as $row) {
-            $valor       = (float) $row["calificacion_valor"];   // 0-100
-            $ponderacion = (float) $row["tarea_ponderacion"];    // porcentaje, ej. 1 = 1%
+            $valor       = (float) $row["calificacion_valor"];  
+            $ponderacion = (float) $row["tarea_ponderacion"];   
 
             $acumulado += ($valor * $ponderacion) / 100;
         }
-
-        // Puedes ajustar a 1 o 2 decimales, aquí lo dejo con 2
         $promedios[$a["id_usuario"]] = number_format($acumulado, 2);
     } else {
         $promedios[$a["id_usuario"]] = null;
@@ -149,29 +135,30 @@ foreach ($alumnos as $a) {
 <head>
     <meta charset="UTF-8">
     <title>Alumnos | Profesor - AcademiX</title>
-
-    <!-- Bootstrap -->
+    <!-- ICONO -->
+    <link rel="icon" type="image/x-icon" href="<?= BASE_URL ?>assets/imgs/logo-ico.png?v=1">
+    <!--Bootsrap-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Icons -->
+     <!--Iconos Bootstrap-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
-    <!-- CSS -->
+    <!-- CSS tablero -->
     <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/tablero.css">
 </head>
 
 <body class="prof-dashboard">
-
+<!--Topbar Profesor-->
 <?php include "../../../includes/topbar_profesor.php"; ?>
 
 <div class="d-flex">
 
-    <!-- SIDEBAR -->
+    <!--Sidebar Profesor-->
     <?php 
         $pagina_activa = "calificaciones";
         include "../../../includes/sidebar_profesor.php"; 
     ?>
 
     <main class="content-area p-4">
-
+        <!--Alertas-->
         <?php include "../../../includes/alertas_profesor.php"; ?>
 
         <h3 class="mb-1 fw-bold">
@@ -271,15 +258,12 @@ foreach ($alumnos as $a) {
     </main>
 
 </div>
-
-    <!-- FOOTER GLOBAL -->
-    <?php include "../../../includes/footer.php"; ?>
-
-    <!-- JS Bootstrap -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-
-    <!-- JS global -->
-    <script src="<?= BASE_URL ?>assets/js/main.js"></script>
+<!--Footer-->
+<?php include "../../../includes/footer.php"; ?>
+<!-- JS Bootstrap -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<!-- JS global -->
+<script src="<?= BASE_URL ?>assets/js/main.js"></script>
 
     <!-- Buscador en tiempo real -->
     <script>

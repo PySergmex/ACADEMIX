@@ -3,9 +3,7 @@ session_start();
 require_once "../../includes/conexion.php";
 require_once "../../includes/config.php";
 
-/* =======================================================
-   VALIDAR SOLO PROFESORES
-======================================================= */
+/*Validar solo profesores*/
 if (!isset($_SESSION["id_usuario"]) || $_SESSION["rol_id"] != 2) {
     header("Location: " . BASE_URL . "index.php");
     exit;
@@ -13,9 +11,7 @@ if (!isset($_SESSION["id_usuario"]) || $_SESSION["rol_id"] != 2) {
 
 $id_maestro = $_SESSION["id_usuario"];
 
-/* =======================================================
-   VALIDAR ID MATERIA
-======================================================= */
+/*Validar ID*/
 if (!isset($_GET["id"])) {
     header("Location: index.php");
     exit;
@@ -23,9 +19,7 @@ if (!isset($_GET["id"])) {
 
 $id_materia = intval($_GET["id"]);
 
-/* =======================================================
-   OBTENER DATOS DE LA MATERIA (SOLO SI ES DEL MAESTRO)
-======================================================= */
+/*Obtener los datos de la materia*/
 try {
     $sql = "
         SELECT 
@@ -56,9 +50,7 @@ try {
     die("Error al cargar la materia: " . $e->getMessage());
 }
 
-/* =======================================================
-   ALUMNOS INSCRITOS
-======================================================= */
+/*Alumnos Inscritos*/
 $sqlInscritos = "
     SELECT 
         i.id_inscripcion,
@@ -76,9 +68,7 @@ $stmt = $pdo->prepare($sqlInscritos);
 $stmt->execute([":id" => $id_materia]);
 $inscritos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-/* =======================================================
-   SOLICITUDES PENDIENTES
-======================================================= */
+/*Solicitudes Pendientes*/
 $sqlPendientes = "
     SELECT 
         i.id_inscripcion,
@@ -102,9 +92,11 @@ $pendientes = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <head>
     <meta charset="UTF-8">
     <title><?= htmlspecialchars($materia["materia_nombre"]) ?> - Profesor | AcademiX</title>
-    <!-- Bootstrap -->
+    <!-- ICONO -->
+    <link rel="icon" type="image/x-icon" href="<?= BASE_URL ?>assets/imgs/logo-ico.png?v=1">
+    <!--Bootsrap-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Icons -->
+     <!--Iconos Bootstrap-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
     <!-- CSS tablero -->
     <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/tablero.css">
@@ -142,9 +134,7 @@ $pendientes = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <?= $materia["materia_fecha_creacion"] ?>
                 </p>
 
-                <!-- ============================
-                     BOTONES AGREGADOS (IGUAL QUE ADMIN)
-                ============================ -->
+
                 <div class="d-flex justify-content-between mt-3">
                     <a href="index.php" class="btn btn-outline-secondary">
                         <i class="bi bi-arrow-left"></i> Volver
@@ -244,7 +234,7 @@ $pendientes = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </main>
 
     </div>
-    <!-- FOOTER GLOBAL -->
+    <!--Footer-->
     <?php include "../../includes/footer.php"; ?>
     <!-- JS Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>

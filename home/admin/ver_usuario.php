@@ -3,17 +3,13 @@ session_start();
 require_once "../../includes/config.php";
 require_once "../../includes/conexion.php";
 
-/* ===========================
-   VALIDAR SOLO ADMIN
-=========================== */
+/*Validar solo admin*/
 if (!isset($_SESSION["id_usuario"]) || $_SESSION["rol_id"] != 1) {
     header("Location: " . BASE_URL . "index.php");
     exit;
 }
 
-/* ===========================
-   VALIDAR ID
-=========================== */
+/*Validar ID*/
 if (!isset($_GET["id"])) {
     header("Location: index.php");
     exit;
@@ -21,9 +17,7 @@ if (!isset($_GET["id"])) {
 
 $id = intval($_GET["id"]);
 
-/* ===========================
-   CONSULTAR USUARIO
-=========================== */
+/*Consultar usuario*/
 $stmt = $pdo->prepare("
     SELECT 
         u.*,
@@ -47,31 +41,30 @@ if (!$usuario) {
 <head>
     <meta charset="UTF-8">
     <title>Perfil del usuario | Administrador - AcademiX</title>
-
-    <!-- Bootstrap -->
+    <!-- ICONO -->
+    <link rel="icon" type="image/x-icon" href="<?= BASE_URL ?>assets/imgs/logo-ico.png?v=1">
+    <!--Bootsrap-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Icons -->
+     <!--Iconos Bootstrap-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
-
     <!-- CSS tablero -->
     <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/tablero.css">
 </head>
 
 <body class="admin-dashboard">
 
-    <!-- TOPBAR -->
+    <!--Topbar Admin-->
     <?php include "../../includes/topbar_admin.php"; ?>
 
     <div class="d-flex">
 
-        <!-- SIDEBAR -->
+       <!--Sidebar Admin-->
         <?php 
             $pagina_activa = "usuarios";
             include "../../includes/sidebar_admin.php"; 
         ?>
 
-        <!-- CONTENIDO -->
+        <!--Contenido Principal-->
         <main class="content-area">
 
             <h3 class="fw-bold mb-4">Perfil del usuario</h3>
@@ -90,7 +83,7 @@ if (!$usuario) {
                     </div>
                 </div>
 
-                <!-- CAMPO -->
+                <!--Correo electrónico-->
                 <div class="mb-3">
                     <label class="form-label text-muted">Correo electrónico</label>
                     <div class="fw-semibold">
@@ -98,7 +91,7 @@ if (!$usuario) {
                     </div>
                 </div>
 
-                <!-- CAMPO -->
+                <!--Rol-->
                 <div class="mb-3">
                     <label class="form-label text-muted">Rol</label>
                     <div class="fw-semibold">
@@ -106,7 +99,7 @@ if (!$usuario) {
                     </div>
                 </div>
 
-                <!-- CAMPO -->
+                <!--Estatus-->
                 <div class="mb-3">
                     <label class="form-label text-muted">Estatus</label>
                     <div class="fw-semibold">
@@ -114,7 +107,7 @@ if (!$usuario) {
                     </div>
                 </div>
 
-                <!-- CAMPO -->
+                <!--Fecha-->
                 <div class="mb-3">
                     <label class="form-label text-muted">Fecha de creación</label>
                     <div class="fw-semibold">
@@ -122,7 +115,7 @@ if (!$usuario) {
                     </div>
                 </div>
 
-                <!-- CAMPO -->
+                <!--Actualización-->
                 <div class="mb-4">
                     <label class="form-label text-muted">Última actualización</label>
                     <div class="fw-semibold">
@@ -130,7 +123,7 @@ if (!$usuario) {
                     </div>
                 </div>
 
-                <!-- BOTONES -->
+                <!--Botones-->
                 <div class="d-flex justify-content-between mt-4">
                     <a href="index.php" class="btn btn-outline-secondary">
                         <i class="bi bi-arrow-left"></i> Volver
@@ -146,15 +139,13 @@ if (!$usuario) {
 
         </main>
     </div>
-
-    <!-- FOOTER -->
+    <!--Footer-->
     <?php include "../../includes/footer.php"; ?>
-
     <!-- JS Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-
     <!-- JS global -->
     <script src="<?= BASE_URL ?>assets/js/main.js"></script>
-
+    <!-- Buscador JS--->  
+    <!-- PROYECTO REALIZADO BY: SERGIO EDUARDO CERVANTES MATA-->
 </body>
 </html>

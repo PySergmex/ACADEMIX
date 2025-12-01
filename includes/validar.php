@@ -4,7 +4,6 @@ session_start();
 require_once "../includes/config.php";
 require_once "../includes/conexion.php";
 
-// Solo aceptar POST
 if ($_SERVER["REQUEST_METHOD"] !== "POST") {
     header("Location: " . BASE_URL . "index.php");
     exit;

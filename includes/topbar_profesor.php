@@ -40,5 +40,5 @@ require_once __DIR__ . "/config.php";
         </div>
 
     </div>
-
+    <!-- PROYECTO REALIZADO BY: SERGIO EDUARDO CERVANTES MATA-->
 </header>

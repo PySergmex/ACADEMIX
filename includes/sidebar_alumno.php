@@ -32,6 +32,7 @@ require_once __DIR__ . "/config.php";
        class="sidebar-icon <?= ($pagina_activa == 'dashboard') ? 'active' : '' ?>">
         <i class="bi bi-speedometer2"></i>
     </a>
+<!-- PROYECTO REALIZADO BY: SERGIO EDUARDO CERVANTES MATA-->
 </aside>
 
 

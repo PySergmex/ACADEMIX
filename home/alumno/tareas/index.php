@@ -3,9 +3,7 @@ session_start();
 require_once "../../../includes/config.php";
 require_once "../../../includes/conexion.php";
 
-/* ===========================
-   VALIDAR SOLO ALUMNOS
-=========================== */
+/*Validar solo alumnos*/
 if (!isset($_SESSION["id_usuario"]) || $_SESSION["rol_id"] != 3) {
     header("Location: " . BASE_URL . "index.php");
     exit;
@@ -13,10 +11,7 @@ if (!isset($_SESSION["id_usuario"]) || $_SESSION["rol_id"] != 3) {
 
 $id_alumno = (int) $_SESSION["id_usuario"];
 
-/* ===========================
-   CONSULTAR TAREAS DE MATERIAS
-   CON INSCRIPCIÓN APROBADA
-=========================== */
+/*Consultar materias*/
 $sql = "
     SELECT 
         t.id_tarea,
@@ -53,31 +48,30 @@ $tareas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <head>
     <meta charset="UTF-8">
     <title>Mis tareas | Alumno - AcademiX</title>
-
-    <!-- Bootstrap -->
+    <!-- ICONO -->
+    <link rel="icon" type="image/x-icon" href="<?= BASE_URL ?>assets/imgs/logo-ico.png?v=1">
+    <!--Bootsrap-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Iconos -->
+     <!--Iconos Bootstrap-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
-
-    <!--CSS-->
+    <!-- CSS tablero -->
     <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/tablero.css">
 </head>
 
 <body class="alumno-dashboard">
 
-    <!-- TOPBAR -->
+    <!--Topbar alumno-->
     <?php include "../../../includes/topbar_alumno.php"; ?>
 
     <div class="d-flex">
 
-        <!-- SIDEBAR -->
+        <!--Sidebar alumno-->
         <?php 
             $pagina_activa = "tareas";
             include "../../../includes/sidebar_alumno.php";
         ?>
 
-        <!-- CONTENIDO -->
+        <!--Contenido Principal-->
         <main class="content-area">
             <!--Alertas-->
             <?php include "../../../includes/alertas_alumno.php"; ?>
@@ -173,15 +167,12 @@ $tareas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     </div>
 
-    <!-- FOOTER -->
+    <!--Footer-->
     <?php include "../../../includes/footer.php"; ?>
-
     <!-- JS Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-
     <!-- JS global -->
     <script src="<?= BASE_URL ?>assets/js/main.js"></script>
-
     <!-- Buscador en tiempo real -->
     <script>
     document.addEventListener("DOMContentLoaded", () => {

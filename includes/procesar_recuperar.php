@@ -33,7 +33,7 @@ try {
         exit;
     }
 
-    // Si pasa validación → ir a restablecer
+    // Si pasa validación redireccionar a restablecer
     header("Location: " . BASE_URL . "restablecer.php?id=" . $usuario["id_usuario"]);
     exit;
 

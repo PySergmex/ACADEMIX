@@ -10,5 +10,5 @@ require_once __DIR__ . "/config.php";
         </a>
     </div>
 </footer>
-
+<!-- PROYECTO REALIZADO BY: SERGIO EDUARDO CERVANTES MATA-->
 <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/style.css">

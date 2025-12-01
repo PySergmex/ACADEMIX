@@ -3,9 +3,8 @@ session_start();
 require_once "../../../includes/config.php";
 require_once "../../../includes/conexion.php";
 
-/* ============================
-   VALIDAR SOLO ALUMNOS
-============================ */
+
+/*Validar solo alumnos*/
 if (!isset($_SESSION["id_usuario"]) || $_SESSION["rol_id"] != 3) {
     header("Location: " . BASE_URL . "index.php");
     exit;
@@ -13,9 +12,7 @@ if (!isset($_SESSION["id_usuario"]) || $_SESSION["rol_id"] != 3) {
 
 $id_alumno = (int) $_SESSION["id_usuario"];
 
-/* ============================
-   ESTADÍSTICAS PRINCIPALES
-============================ */
+/*Estadisticas*/
 
 /* Materias pendientes vs aprobadas */
 $sqlEstatus = "
@@ -72,9 +69,7 @@ $stmt = $pdo->prepare($sqlHorarios);
 $stmt->execute([":alumno_horarios" => $id_alumno]);
 $horarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-/* ============================
-   PROMEDIO POR MATERIA (ALUMNO)
-============================ */
+/*Promedios*/
 
 /* Materias del alumno */
 $sqlMaterias = "
@@ -145,9 +140,7 @@ if (count($paraPromedioGeneral) > 0) {
     $promedioGeneral = array_sum($paraPromedioGeneral) / count($paraPromedioGeneral);
 }
 
-/* ============================
-   MARCAR SECCIÓN ACTIVA
-============================ */
+/*Página Activa*/
 $pagina_activa = "dashboard";
 ?>
 <!DOCTYPE html>
@@ -155,30 +148,26 @@ $pagina_activa = "dashboard";
 <head>
     <meta charset="UTF-8">
     <title>Dashboard Alumno - AcademiX</title>
-
-    <!-- Bootstrap -->
+    <!-- ICONO -->
+    <link rel="icon" type="image/x-icon" href="<?= BASE_URL ?>assets/imgs/logo-ico.png?v=1">
+    <!--Bootsrap-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Icons -->
+     <!--Iconos Bootstrap-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
-
     <!-- CSS tablero -->
     <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/tablero.css">
-
-    <!-- Chart.js -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body class="alumno-dashboard">
-
+<!--Topbar alumno-->
 <?php include "../../../includes/topbar_alumno.php"; ?>
 
 <div class="d-flex">
-
+    <!--Sidebar alumno-->
     <?php include "../../../includes/sidebar_alumno.php"; ?>
-
+    <!--Contenido Principal-->
     <main class="content-area p-4">
-
+        <!--Alertas-->
         <?php 
         if (file_exists("../../../includes/alertas_alumno.php")) {
             include "../../../includes/alertas_alumno.php"; 
@@ -222,39 +211,7 @@ $pagina_activa = "dashboard";
 
         </div>
 
-        <!-- GRÁFICAS + HORARIOS -->
-        <div class="row g-4 mb-4">
-
-            <!-- PROMEDIO POR MATERIA (BARRAS) -->
-            <div class="col-md-8">
-                <div class="card p-4 shadow-sm h-100">
-                    <h5 class="mb-3">Promedio por materia</h5>
-                    <?php if (empty($labelsMaterias)): ?>
-                        <p class="text-muted mb-0">
-                            Aún no hay calificaciones registradas para mostrar la gráfica.
-                        </p>
-                    <?php else: ?>
-                        <canvas id="chartPromedios"></canvas>
-                    <?php endif; ?>
-                </div>
-            </div>
-
-            <!-- TAREAS (DONUT) + HORARIOS -->
-            <div class="col-md-4 d-flex flex-column gap-4">
-
-                <!-- Donut tareas -->
-                <div class="card p-4 shadow-sm">
-                    <h5 class="mb-3">Tareas (completadas vs pendientes)</h5>
-                    <?php if (($tareasPendientes + $tareasCompletadas) === 0): ?>
-                        <p class="text-muted mb-0">
-                            Aún no tienes tareas registradas.
-                        </p>
-                    <?php else: ?>
-                        <canvas id="chartTareas"></canvas>
-                    <?php endif; ?>
-                </div>
-
-                <!-- Próximas clases -->
+              <!-- Próximas clases -->
                 <div class="card p-3 shadow-sm">
                     <h6 class="mb-2">Horarios de mis materias</h6>
                     <small class="text-muted d-block mb-2">Próximas clases</small>
@@ -282,38 +239,11 @@ $pagina_activa = "dashboard";
     </main>
 
 </div>
-
+<!--Footer-->
 <?php include "../../../includes/footer.php"; ?>
-
 <!-- JS Bootstrap -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 <!-- JS global -->
 <script src="<?= BASE_URL ?>assets/js/main.js"></script>
-
-<!-- Chart helpers -->
-<script type="module">
-import { iniciarContadores, cargarGraficaEstatus, cargarGraficaPromedios } from "<?= BASE_URL ?>assets/js/chart.js";
-
-iniciarContadores();
-
-// Barras: promedio por materia
-<?php if (!empty($labelsMaterias)): ?>
-cargarGraficaPromedios(
-    "chartPromedios",
-    <?= json_encode($labelsMaterias) ?>,
-    <?= json_encode(array_map('floatval', $valuesMaterias)) ?>
-);
-<?php endif; ?>
-
-// Donut: tareas completadas vs pendientes
-<?php if (($tareasPendientes + $tareasCompletadas) > 0): ?>
-cargarGraficaEstatus(
-    "chartTareas",
-    <?= json_encode(["Pendientes", "Completadas"]) ?>,
-    <?= json_encode([$tareasPendientes, $tareasCompletadas]) ?>
-);
-<?php endif; ?>
-</script>
-
 </body>
 </html>

@@ -76,7 +76,8 @@ $pagina_activa = 'usuarios';
 <head>
     <meta charset="UTF-8">
     <title>Administrar Usuarios - AcademiX</title>
-
+    <!-- ICONO -->
+    <link rel="icon" type="image/x-icon" href="<?= BASE_URL ?>assets/imgs/logo-ico.png?v=1">
     <!--Bootsrap-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
      <!--Iconos Bootstrap-->
@@ -87,14 +88,15 @@ $pagina_activa = 'usuarios';
 
 <body class="admin-dashboard">
 
+    <!--Topbar Admin-->
     <?php include "../../includes/topbar_admin.php"; ?>
 
     <div class="d-flex">
-
+     <!--Sidebar Admin-->
         <?php include "../../includes/sidebar_admin.php"; ?>
-
+        <!--Contenido Principal-->
         <main class="content-area p-4">
-
+             <!--Alertas-->
             <?php include "../../includes/alertas_admin.php"; ?>
 
             <div class="d-flex justify-content-between align-items-center mb-3">
@@ -201,8 +203,7 @@ $pagina_activa = 'usuarios';
 
         </main>
     </div>
-
-    <!-- FOOTER GLOBAL -->
+    <!--Footer-->
     <?php include "../../includes/footer.php"; ?>
     <!-- JS Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
@@ -217,6 +218,6 @@ $pagina_activa = 'usuarios';
         );
     });
     </script>
-
+<!-- PROYECTO REALIZADO BY: SERGIO EDUARDO CERVANTES MATA-->
 </body>
 </html>

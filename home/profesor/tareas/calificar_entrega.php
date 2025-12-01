@@ -75,27 +75,22 @@ if (!$info) {
 <head>
     <meta charset="UTF-8">
     <title>Calificar entrega | Profesor - AcademiX</title>
-
-    <!-- Bootstrap -->
-    <link 
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" 
-        rel="stylesheet">
-
-    <!-- Iconos Bootstrap -->
-    <link 
-        rel="stylesheet" 
-        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
-
+    <!-- ICONO -->
+    <link rel="icon" type="image/x-icon" href="<?= BASE_URL ?>assets/imgs/logo-ico.png?v=1">
+    <!--Bootsrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+     <!--Iconos Bootstrap-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
     <!-- CSS tablero -->
     <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/tablero.css">
 </head>
 
 <body class="prof-dashboard">
-
+<!--Topbar Profesor-->
 <?php include "../../../includes/topbar_profesor.php"; ?>
 
 <div class="d-flex">
-
+    <!--Sidebar Profesor-->
     <?php
         $pagina_activa = "tareas";
         include "../../../includes/sidebar_profesor.php";
@@ -124,9 +119,6 @@ if (!$info) {
 
             <?php if ($info["id_entrega"]): ?>
                 <p>
-                    <a href="<?= BASE_URL . "uploads/entregas/" . $info["entrega_ruta_archivo"] ?>" target="_blank">
-                        Ver archivo enviado
-                    </a><br>
                     <small class="text-muted"><?= $info["entrega_fecha"] ?></small>
                 </p>
 
@@ -183,8 +175,11 @@ if (!$info) {
     </main>
 
 </div>
-     <!--JS-->                               
+    <!-- Footer -->
+    <?php include "../../../includes/footer.php"; ?>
+    <!-- JS Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- JS global -->
     <script src="<?= BASE_URL ?>assets/js/main.js"></script>
 </body>
 </html>

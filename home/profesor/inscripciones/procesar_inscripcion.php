@@ -3,9 +3,7 @@ session_start();
 require_once "../../../includes/conexion.php";
 require_once "../../../includes/config.php";
 
-/* ==========================================
-   1. SOLO PROFESORES
-========================================== */
+/*Validar solo profesores*/
 if (!isset($_SESSION["id_usuario"]) || $_SESSION["rol_id"] != 2) {
     header("Location: " . BASE_URL . "index.php");
     exit;
@@ -13,9 +11,7 @@ if (!isset($_SESSION["id_usuario"]) || $_SESSION["rol_id"] != 2) {
 
 $id_maestro = (int) $_SESSION["id_usuario"];
 
-/* ==========================================
-   2. VALIDAR DATOS
-========================================== */
+/*Validar Datos*/
 if (!isset($_POST["id_inscripcion"]) || !isset($_POST["accion"])) {
     header("Location: index.php?error=solicitud_invalida");
     exit;
@@ -30,9 +26,7 @@ if (!in_array($accion, ["aprobar", "rechazar"])) {
     exit;
 }
 
-/* ==========================================
-   3. VALIDAR QUE LA INSCRIPCIÓN SEA DEL MAESTRO
-========================================== */
+/*Validar maestro inscripcion*/
 $sql = "
     SELECT 
         i.id_inscripcion,
@@ -58,9 +52,7 @@ if ($inscripcion["id_usuario_maestro"] != $id_maestro) {
     exit;
 }
 
-/* ==========================================
-   4. ACTUALIZAR ESTATUS
-========================================== */
+/*Actualizar estatus*/
 $estatusNuevo = ($accion === "aprobar") ? 2 : 3; 
 // 2 = Aprobado, 3 = Rechazado
 

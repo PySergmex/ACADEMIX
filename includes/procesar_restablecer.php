@@ -11,9 +11,7 @@ $id_usuario = intval($_POST["id_usuario"]);
 $password   = trim($_POST["password"]);
 $password2  = trim($_POST["password2"]);
 
-/* ===============================
-   Validación: contraseñas
-================================= */
+/*Validación de contraeñas*/
 if ($password !== $password2) {
     $_SESSION["error_reset"] = "Las contraseñas no coinciden.";
     header("Location: ../restablecer.php?id=" . $id_usuario);
@@ -34,10 +32,7 @@ if (!preg_match('/[0-9]/', $password)) {
 
 try {
 
-    /* ===============================
-       Verificar que el usuario exista
-       y que sea ESTUDIANTE (rol 3)
-    ================================= */
+    /*Validar que el usuario exista y sea estudiante = id=3*/
     $sqlRol = "SELECT id_rol FROM usuarios WHERE id_usuario = :id LIMIT 1";
     $stmtRol = $pdo->prepare($sqlRol);
     $stmtRol->bindParam(":id", $id_usuario);
@@ -51,16 +46,14 @@ try {
 
     $usuario = $stmtRol->fetch();
 
-    // Si NO es estudiante → bloquear
+    // Bloquear si no es estudiante
     if ($usuario["id_rol"] != 3) {
         $_SESSION["error_reset"] = "Solo los estudiantes pueden recuperar contraseña.";
         header("Location: ../index.php");
         exit;
     }
 
-    /* ===============================
-       Actualizar contraseña
-    ================================= */
+    /*Actualizar contraseña*/
     $hash = password_hash($password, PASSWORD_DEFAULT);
 
     $sqlUpdate = "UPDATE usuarios 

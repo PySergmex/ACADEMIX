@@ -24,7 +24,7 @@ if ($id === $idAdmin) {
     exit;
 }
 
-/* VERIFICAR SI ES ADMIN — NO SE PUEDE ELIMINAR */
+/* Verificar el rol y si es admin no puede eliminar*/
 try {
     $q = $pdo->prepare("SELECT id_rol FROM usuarios WHERE id_usuario = :id LIMIT 1");
     $q->bindParam(":id", $id, PDO::PARAM_INT);

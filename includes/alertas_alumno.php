@@ -9,9 +9,7 @@ function alertAlumno($tipo, $mensaje) {
     ";
 }
 
-/* ===========================
-   MENSAJES RELACIONADOS CON MATERIAS
-=========================== */
+/*Solicitudes de inscripccion*/
 if (isset($_GET["materia"])) {
 
     switch ($_GET["materia"]) {
@@ -26,9 +24,7 @@ if (isset($_GET["materia"])) {
     }
 }
 
-/* ===========================
-   ERRORES GENERALES
-=========================== */
+/*Errores generales*/
 if (isset($_GET["error"])) {
 
     switch ($_GET["error"]) {
@@ -46,9 +42,7 @@ if (isset($_GET["error"])) {
             break;
     }
 }
-/* ===========================
-   TAREA ENTREGAS
-=========================== */
+/*Entrega de tareas*/
 if (isset($_GET["ok"]) && $_GET["ok"] === "entregada") {
     alertAlumno("success", "Tarea entregada correctamente.");
 }

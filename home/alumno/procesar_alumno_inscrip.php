@@ -3,17 +3,14 @@ session_start();
 require_once "../../includes/config.php";
 require_once "../../includes/conexion.php";
 
-/* ===========================
-   VALIDAR SOLO ALUMNOS
-=========================== */
+
+/*Validar solo alumnos*/
 if (!isset($_SESSION["id_usuario"]) || $_SESSION["rol_id"] != 3) {
     header("Location: " . BASE_URL . "index.php");
     exit;
 }
 
-/* ===========================
-   VALIDAR DATOS
-=========================== */
+/*Validar usuario*/
 if (!isset($_POST["id_materia"])) {
     header("Location: alumno_inscrip_materia.php?error=materia_no_encontrada");
     exit;
@@ -27,9 +24,7 @@ if ($id_materia <= 0) {
     exit;
 }
 
-/* ===========================
-   VERIFICAR QUE LA MATERIA EXISTA Y ESTÉ ACTIVA
-=========================== */
+/*Validar materia*/
 $sql = "
     SELECT id_materia
     FROM materias
@@ -47,10 +42,7 @@ if (!$materia) {
     exit;
 }
 
-/* ===========================
-   VERIFICAR SI YA EXISTE INSCRIPCIÓN
-   (Pendiente, Aprobada o Rechazada)
-=========================== */
+/*validar status materia*/
 $sql = "
     SELECT id_inscripcion
     FROM inscripciones
@@ -72,9 +64,7 @@ if ($existe) {
     exit;
 }
 
-/* ===========================
-   CREAR SOLICITUD (PENDIENTE)
-=========================== */
+/*Crear solicitud*/
 try {
     $sql = "
         INSERT INTO inscripciones

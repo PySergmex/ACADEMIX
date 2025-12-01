@@ -3,17 +3,13 @@ session_start();
 require_once "../../../includes/conexion.php";
 require_once "../../../includes/config.php";
 
-/* ============================
-   VALIDAR SOLO PROFESORES
-============================ */
+/*Validar solo profesores*/
 if (!isset($_SESSION["id_usuario"]) || $_SESSION["rol_id"] != 2) {
     header("Location: " . BASE_URL . "index.php");
     exit;
 }
 
-/* ============================
-   VALIDAR ID MATERIA
-============================ */
+/*Validar ID*/
 if (!isset($_GET["id_materia"])) {
     header("Location: ../index.php");
     exit;
@@ -22,9 +18,7 @@ if (!isset($_GET["id_materia"])) {
 $id_materia = intval($_GET["id_materia"]);
 $id_maestro = (int) $_SESSION["id_usuario"];
 
-/* ============================
-   VALIDAR PROPIEDAD DE LA MATERIA
-============================ */
+/*Validar materia*/
 $stmt = $pdo->prepare("
     SELECT materia_nombre 
     FROM materias 
@@ -46,33 +40,32 @@ if (!$materia) {
 <head>
     <meta charset="UTF-8">
     <title>Nueva Tarea | AcademiX</title>
-
-    <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
-
-    <!-- Icons -->
+    <!-- ICONO -->
+    <link rel="icon" type="image/x-icon" href="<?= BASE_URL ?>assets/imgs/logo-ico.png?v=1">
+    <!--Bootsrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+     <!--Iconos Bootstrap-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
-
     <!-- CSS tablero -->
     <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/tablero.css">
 </head>
 
 <body class="prof-dashboard">
 
-    <!-- TOPBAR -->
+    <!--Topbar Profesor-->
     <?php include "../../../includes/topbar_profesor.php"; ?>
 
     <div class="d-flex">
 
-        <!-- SIDEBAR -->
+       <!--Sidebar Profesor-->
         <?php 
             $pagina_activa = "tareas";
             include "../../../includes/sidebar_profesor.php"; 
         ?>
 
-        <!-- CONTENIDO -->
+        <!--Contenido Principal-->
         <main class="content-area p-4">
-
+            <!--Alertas-->
             <?php include "../../../includes/alertas_profesor.php"; ?>
 
             <h3 class="mb-3">

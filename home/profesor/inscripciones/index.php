@@ -3,9 +3,7 @@ session_start();
 require_once "../../../includes/conexion.php";
 require_once "../../../includes/config.php";
 
-/* ==========================================
-   VALIDACIÓN: SOLO PROFESORES
-========================================== */
+/*Validar solo profesores*/
 if (!isset($_SESSION["id_usuario"]) || $_SESSION["rol_id"] != 2) {
     header("Location: " . BASE_URL . "index.php");
     exit;
@@ -15,9 +13,7 @@ $id_maestro = $_SESSION["id_usuario"];
 $busqueda = $_GET["busqueda"] ?? "";
 $param = "%" . $busqueda . "%";
 
-/* ==========================================
-   CONSULTAR SOLICITUDES DEL MAESTRO
-========================================== */
+/*Consulta Maestros*/
 try {
 
     $sql = "
@@ -42,7 +38,7 @@ try {
         WHERE m.id_usuario_maestro = :id
     ";
 
-    /* FILTRO DE BÚSQUEDA */
+    /*Filtro de busqueda*/
     if ($busqueda !== "") {
         $sql .= "
             AND (
@@ -76,9 +72,11 @@ try {
 <head>
     <meta charset="UTF-8">
     <title>Solicitudes de inscripción - Profesor | AcademiX</title>
-    <!-- Bootstrap -->
+    <!-- ICONO -->
+    <link rel="icon" type="image/x-icon" href="<?= BASE_URL ?>assets/imgs/logo-ico.png?v=1">
+    <!--Bootsrap-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Icons -->
+     <!--Iconos Bootstrap-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
     <!-- CSS tablero -->
     <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/tablero.css">
@@ -86,12 +84,12 @@ try {
 
 <body class="prof-dashboard">
 
-    <!-- TOPBAR -->
+    <!--Topbar Profesor-->
     <?php include "../../../includes/topbar_profesor.php"; ?>
 
     <div class="d-flex">
 
-        <!-- SIDEBAR -->
+        <!--Sidebar Profesor-->
         <?php 
             $pagina_activa = "inscripciones";
             include "../../../includes/sidebar_profesor.php";
@@ -99,7 +97,7 @@ try {
 
         <main class="content-area p-4">
 
-            <!-- ALERTAS -->
+            <!--Alertas-->
             <?php include "../../../includes/alertas_profesor.php"; ?>
 
             <h3 class="mb-3">Solicitudes de inscripción</h3>
@@ -218,7 +216,7 @@ try {
         </main>
 
     </div>
-    <!-- FOOTER GLOBAL -->
+    <!--Footer-->
     <?php include "../../includes/footer.php"; ?>
     <!-- JS Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>

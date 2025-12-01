@@ -51,28 +51,28 @@ if (!$tarea) {
 <head>
     <meta charset="UTF-8">
     <title>Entregar tarea | Alumno</title>
-    <!-- Bootstrap -->
+    <!-- ICONO -->
+    <link rel="icon" type="image/x-icon" href="<?= BASE_URL ?>assets/imgs/logo-ico.png?v=1">
+    <!--Bootsrap-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Iconos -->
+     <!--Iconos Bootstrap-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
-
-    <!--CSS-->
+    <!-- CSS tablero -->
     <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/tablero.css">
 </head>
 
 <body class="alumno-dashboard">
-
+<!--Topbar alumno-->
 <?php include "../../../includes/topbar_alumno.php"; ?>
-
+<!--Sidebar alumno-->
 <div class="d-flex">
     <?php 
         $pagina_activa = "tareas";
         include "../../../includes/sidebar_alumno.php"; 
     ?>
-
+    <!--Contenido Principal-->
     <main class="content-area">
-
+        <!--Alertas-->
         <?php include "../../../includes/alertas_alumno.php"; ?>
 
         <h3 class="mb-3">Entregar tarea</h3>
@@ -108,15 +108,11 @@ if (!$tarea) {
 
     </main>
 </div>
-
-    <!-- FOOTER -->
+    <!--Footer-->
     <?php include "../../../includes/footer.php"; ?>
-
     <!-- JS Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-
     <!-- JS global -->
     <script src="<?= BASE_URL ?>assets/js/main.js"></script>
-
 </body>
 </html>

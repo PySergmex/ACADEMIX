@@ -9,9 +9,7 @@ function alertProfesor($tipo, $mensaje) {
     ";
 }
 
-/* =======================================================
-   INSCRIPCIONES
-======================================================= */
+/*Inscripciones*/
 if (isset($_GET["inscripcion"])) {
     switch ($_GET["inscripcion"]) {
         case "aprobada":
@@ -23,9 +21,7 @@ if (isset($_GET["inscripcion"])) {
     }
 }
 
-/* =======================================================
-   TAREAS
-======================================================= */
+/*Tareas*/
 if (isset($_GET["exito"])) {
     switch ($_GET["exito"]) {
         case "tarea_creada":
@@ -43,9 +39,7 @@ if (isset($_GET["exito"])) {
     }
 }
 
-/* =======================================================
-   CALIFICACIONES
-======================================================= */
+/*Calificaciones*/
 if (isset($_GET["ok"])) {
     switch ($_GET["ok"]) {
         case "creado":
@@ -57,9 +51,7 @@ if (isset($_GET["ok"])) {
     }
 }
 
-/* =======================================================
-   MATERIAS (creación, edición, desactivación)
-======================================================= */
+/*Materias*/
 if (isset($_GET["materia"])) {
     switch ($_GET["materia"]) {
         case "creada":
@@ -74,9 +66,7 @@ if (isset($_GET["materia"])) {
     }
 }
 
-/* =======================================================
-   ERRORES DE MATERIAS
-======================================================= */
+/*Errores de materias*/
 if (isset($_GET["error"])) {
     switch ($_GET["error"]) {
         case "faltan_datos":

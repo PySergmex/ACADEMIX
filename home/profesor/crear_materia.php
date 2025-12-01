@@ -3,9 +3,8 @@ session_start();
 require_once "../../includes/config.php";
 require_once "../../includes/conexion.php";
 
-/* ============================
-   VALIDAR SOLO PROFESORES
-============================ */
+
+/*Validar solo profesores*/
 if (!isset($_SESSION["id_usuario"]) || $_SESSION["rol_id"] != 2) {
     header("Location: " . BASE_URL . "index.php");
     exit;
@@ -19,9 +18,11 @@ $id_maestro = (int) $_SESSION["id_usuario"];
     <meta charset="UTF-8">
     <title>Crear materia | Profesor - AcademiX</title>
 
-    <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
-    <!-- Icons -->
+    <!-- ICONO -->
+    <link rel="icon" type="image/x-icon" href="<?= BASE_URL ?>assets/imgs/logo-ico.png?v=1">
+    <!--Bootsrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+     <!--Iconos Bootstrap-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
     <!-- CSS tablero -->
     <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/tablero.css">
@@ -29,18 +30,18 @@ $id_maestro = (int) $_SESSION["id_usuario"];
 </head>
 
 <body class="prof-dashboard">
-
+<!--Topbar Profesor-->
 <?php include "../../includes/topbar_profesor.php"; ?>
 
 <div class="d-flex">
-
+<!--Sidebar Profesor-->
     <?php 
         $pagina_activa = "materias";
         include "../../includes/sidebar_profesor.php"; 
     ?>
 
     <main class="content-area p-4">
-
+        <!--Alertas-->
         <?php include "../../includes/alertas_profesor.php"; ?>
 
         <h3 class="mb-3">Crear nueva materia</h3>

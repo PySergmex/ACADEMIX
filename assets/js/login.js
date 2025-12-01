@@ -1,3 +1,5 @@
+//ACADEMIX PROYECTO REALIZADO BY: SERGIO EDUARDO CERVANTES MATA
+
 // Manejo del loader al enviar el formulario de login
 document.addEventListener("DOMContentLoaded", function () {
 
@@ -16,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
         formCard.classList.add("fade-in");
     }
 
-    // Tabs de Sign In / Sign Up con animación suave
+    //Sign In / Sign Up con animación suave
     const tabs = document.querySelectorAll(".tab-btn");
 
     tabs.forEach(btn => {

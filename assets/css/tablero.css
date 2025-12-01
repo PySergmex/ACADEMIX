@@ -1,12 +1,15 @@
-/* =======================================================
-   ACADEMIX - LAYOUT UNIFICADO (ADMIN + PROFESOR + ALUMNO) 
-   - Paletas por rol con variables CSS
-========================================================== */
+
+/*ACADEMIX PROYECTO REALIZADO BY: SERGIO EDUARDO CERVANTES MATA*/
+
+/*Ajustar el tamaño del side bar*/
+
 body {
-    padding-bottom: 0px; /*se ajusta al tamaño del sidebar del footer*/
+    padding-bottom: 0px; /* se ajusta al tamaño del sidebar del footer */
 }
 
-/* ---------- PALETA BASE GLOBAL ---------- */
+
+/*Paleta de colores por variable*/
+
 :root {
     --color-primario: #0D1028;
     --color-texto: #111;
@@ -15,10 +18,8 @@ body {
     --color-gris-fondo: #f3f4f7;
 }
 
-/* ======================================================
-   VARIABLES POR ROL
-   (se aplican según la clase del <body>)
-====================================================== */
+
+/*Paleta de colores por variable y rol*/
 
 /* ADMIN */
 .admin-dashboard {
@@ -38,7 +39,7 @@ body {
     --card-bg: #ffffff;
 }
 
-/* ALUMNO (MISMA PALETA QUE PROFESOR PARA NO CAMBIAR DISEÑO) */
+/* ALUMNO (misma paleta que profesor) */
 .alumno-dashboard {
     --layout-bg: #f5f6fa;
     --sidebar-bg: #ececff;
@@ -47,13 +48,12 @@ body {
     --card-bg: #ffffff;
 }
 
-/* ======================================================
-   LAYOUT GENERAL
-====================================================== */
+
+/*Layout general tableros*/
 
 .admin-dashboard,
 .prof-dashboard,
-.alumno-dashboard {  /* <- añadido alumno-dashboard */
+.alumno-dashboard {
     background: var(--layout-bg, var(--color-gris-fondo));
     min-height: 100vh;
     display: flex;
@@ -61,9 +61,8 @@ body {
     color: var(--color-texto);
 }
 
-/* ======================================================
-   TOPBAR (compartida para admin/profesor/alumno)
-====================================================== */
+
+/*Diseño topbar admin/profesor/alumno*/
 
 .topbar {
     background: var(--color-primario);
@@ -73,7 +72,7 @@ body {
     align-items: center;
     justify-content: space-between;
     padding: 0 28px;
-    box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
 }
 
 .logo-dashboard {
@@ -92,9 +91,8 @@ body {
     width: 100%;
 }
 
-/* ======================================================
-   SIDEBAR (compartida)
-====================================================== */
+
+/* Diseño sidebar admin/profesor/alumno*/
 
 .sidebar-admin {
     width: 90px;
@@ -126,31 +124,29 @@ body {
 .sidebar-icon.active {
     background: linear-gradient(135deg, var(--accent-main), var(--accent-alt));
     color: var(--color-blanco);
-    box-shadow: 0 6px 14px rgba(0,0,0,0.25);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
 }
 
-/* ======================================================
-   CONTENIDO PRINCIPAL
-====================================================== */
+
+/*Contenido principal*/
 
 .content-area {
     flex: 1;
     padding: 32px;
 }
 
-/* ======================================================
-   TARJETAS Y FORMULARIOS
-====================================================== */
+
+/*Cards y formularios*/
 
 /* Card estándar de panel: admin, profesor y alumno */
 .admin-form-card,
 .prof-card,
-.alumno-card {   /* <- añadimos alumno-card */
+.alumno-card {
     background: var(--card-bg, #ffffff);
     border-radius: 18px;
     padding: 28px;
     border: 1px solid var(--color-gris-borde);
-    box-shadow: 0 6px 22px rgba(0,0,0,0.08);
+    box-shadow: 0 6px 22px rgba(0, 0, 0, 0.08);
     max-width: 520px;
 }
 
@@ -161,29 +157,28 @@ body {
 .prof-card input,
 .prof-card select,
 .prof-card textarea,
-.alumno-card input,      /* <- añadidos */
+.alumno-card input,
 .alumno-card select,
 .alumno-card textarea {
     border-radius: 10px;
 }
 
-/* Pequeño efecto hover en tarjetas de formulario */
+/* Efecto hover en tarjetas de formulario */
 .admin-form-card:hover,
 .prof-card:hover,
-.alumno-card:hover { /* <- añadimos alumno-card */
+.alumno-card:hover {
     transform: translateY(-2px);
-    box-shadow: 0 10px 24px rgba(0,0,0,0.12);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
 }
 
 /* Cards Bootstrap genéricas con animación suave */
 .card {
     opacity: 0;
-    animation: fadeIn .55s ease forwards;
+    animation: fadeIn 0.55s ease forwards;
 }
 
-/* ======================================================
-   ANIMACIONES
-====================================================== */
+
+/*Animaciones*/
 
 .fade-in {
     animation: fadeIn 0.45s ease forwards;
@@ -191,13 +186,18 @@ body {
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(8px); }
-    to   { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-/* ======================================================
-   TOASTS PERSONALIZADOS (para main.js)
-====================================================== */
+
+/*Alertas JS*/
 
 .custom-toast {
     position: fixed;
@@ -208,10 +208,10 @@ body {
     padding: 12px 20px;
     border-radius: 12px;
     font-size: 15px;
-    box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
     opacity: 0;
     transform: translateY(-15px);
-    transition: all .35s ease;
+    transition: all 0.35s ease;
     z-index: 9999;
 }
 
@@ -234,24 +234,22 @@ body {
     color: #222;
 }
 
-/* ======================================================
-   ALERTAS PREMIUM
-====================================================== */
+
+/*Alertas mejoradas*/
 
 .premium-alert {
     border-radius: 14px;
     font-size: 15px;
     padding: 14px 16px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
 }
 
 .premium-alert i {
     font-size: 18px;
 }
 
-/* ======================================================
-   RESPONSIVE
-====================================================== */
+
+/*Ajustes responsivos*/
 
 @media (max-width: 768px) {
     .sidebar-admin {

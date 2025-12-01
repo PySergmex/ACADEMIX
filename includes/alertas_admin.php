@@ -1,7 +1,5 @@
 <?php
-// ============================================================
-//  SISTEMA DE ALERTAS ADMIN — SOLO ALERTAS BOOTSTRAP
-// ============================================================
+/*Alertas Admin*/
 
 function mostrarAlerta($tipo, $mensaje) {
     echo "
@@ -12,23 +10,17 @@ function mostrarAlerta($tipo, $mensaje) {
     ";
 }
 
-/* =============================== 
-   USUARIOS: Editar
-=============================== */
+/*Editar*/
 if (isset($_GET["edit"]) && $_GET["edit"] === "ok") {
     mostrarAlerta("success", "El usuario fue actualizado correctamente.");
 }
 
-/* =============================== 
-   USUARIOS: Registro
-=============================== */
+/*Registro*/
 if (isset($_GET["registro"]) && $_GET["registro"] === "ok") {
     mostrarAlerta("success", "Usuario registrado correctamente 🎉");
 }
 
-/* =============================== 
-   USUARIOS: Eliminación
-=============================== */
+/*Eliminación*/
 if (isset($_GET["delete"]) && $_GET["delete"] === "ok") {
     mostrarAlerta("success", "Usuario eliminado correctamente.");
 }
@@ -37,9 +29,7 @@ if (isset($_GET["delete"]) && $_GET["delete"] === "admin_denegado") {
     mostrarAlerta("warning", "No puedes eliminar usuarios administradores.");
 }
 
-/* =============================== 
-   USUARIOS: Errores
-=============================== */
+/*Errores*/
 if (isset($_GET["error"])) {
     switch ($_GET["error"]) {
 
@@ -64,9 +54,7 @@ if (isset($_GET["error"])) {
     }
 }
 
-/* =============================== 
-   MATERIAS: ÉXITOS
-=============================== */
+/*Materias registros*/
 if (isset($_GET["materia_registro"]) && $_GET["materia_registro"] === "ok") {
     mostrarAlerta("success", "Materia registrada correctamente 🎓");
 }
@@ -79,9 +67,7 @@ if (isset($_GET["materia_delete"]) && $_GET["materia_delete"] === "ok") {
     mostrarAlerta("success", "Materia eliminada correctamente.");
 }
 
-/* =============================== 
-   MATERIAS: Errores
-=============================== */
+/*Materias Erorres*/
 if (isset($_GET["error_materia"])) {
 
     switch ($_GET["error_materia"]) {

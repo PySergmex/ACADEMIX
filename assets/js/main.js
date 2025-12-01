@@ -1,3 +1,5 @@
+//ACADEMIX PROYECTO REALIZADO BY: SERGIO EDUARDO CERVANTES MATA
+
 // Archivo global ACADEMIX
 window.APP = (function () {
 
@@ -101,9 +103,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (window.APP && APP.init) APP.init();
 });
 
-/* ===============================
-   Buscador en tiempo real
-   =============================== */
+//Buscador en tiempo real
 function iniciarBuscadorEnTiempoReal(selectorInput, selectorTabla) {
     const input = document.querySelector(selectorInput);
     const filas = document.querySelectorAll(selectorTabla + " tbody tr");

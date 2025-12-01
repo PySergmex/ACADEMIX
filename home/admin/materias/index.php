@@ -3,9 +3,7 @@ session_start();
 require_once "../../../includes/config.php";
 require_once "../../../includes/conexion.php";
 
-/* ============================================
-   PROTEGER SOLO ADMIN
-============================================ */
+/*Validar solo admin*/
 if (!isset($_SESSION["id_usuario"]) || $_SESSION["rol_id"] != 1) {
     header("Location: " . BASE_URL . "index.php");
     exit;
@@ -14,9 +12,7 @@ if (!isset($_SESSION["id_usuario"]) || $_SESSION["rol_id"] != 1) {
 $busqueda = trim($_GET["busqueda"] ?? "");
 $param = "%" . $busqueda . "%";
 
-/* ============================================
-   CONSULTA DE MATERIAS
-============================================ */
+/*Consulta materias*/
 try {
 
     if ($busqueda !== "") {
@@ -79,28 +75,27 @@ $pagina_activa = "materias";
 <head>
     <meta charset="UTF-8">
     <title>Materias - AcademiX</title>
-
+    <!-- ICONO -->
+    <link rel="icon" type="image/x-icon" href="<?= BASE_URL ?>assets/imgs/logo-ico.png?v=1">
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
-
     <!-- CSS tablero -->
     <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/tablero.css">
 </head>
 
 <body class="admin-dashboard">
 
-    <!-- TOPBAR -->
+    <!--Topbar Admin-->
     <?php include "../../../includes/topbar_admin.php"; ?>
 
     <div class="d-flex">
 
-        <!-- SIDEBAR -->
+        <!--Sidebar Admin-->
         <?php include "../../../includes/sidebar_admin.php"; ?>
 
-        <!-- CONTENIDO -->
+       <!--Contenido Principal-->
         <main class="content-area">
 
             <!-- Alertas -->
@@ -224,14 +219,10 @@ $pagina_activa = "materias";
         </main>
 
     </div>
-
-
-    <!-- FOOTER GLOBAL -->
+    <!--Footer-->
     <?php include "../../../includes/footer.php"; ?>
-
     <!-- JS Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-
     <!-- JS global -->
     <script src="<?= BASE_URL ?>assets/js/main.js"></script>
     <!--Buscador--->
@@ -242,7 +233,7 @@ $pagina_activa = "materias";
         }
     });
     </script>
-
+<!-- PROYECTO REALIZADO BY: SERGIO EDUARDO CERVANTES MATA-->
 </body>
 </html>
 <?php

@@ -3,17 +3,13 @@ session_start();
 require_once "../../../includes/config.php";
 require_once "../../../includes/conexion.php";
 
-/* ============================
-   VALIDAR SOLO ALUMNOS
-============================ */
+/*Validar solo alumnos*/
 if (!isset($_SESSION["id_usuario"]) || $_SESSION["rol_id"] != 3) {
     header("Location: " . BASE_URL . "index.php");
     exit;
 }
 
-/* ============================
-   VALIDAR MATERIA
-============================ */
+/*Validar materia*/
 $id_materia = isset($_GET["id_materia"]) ? intval($_GET["id_materia"]) : 0;
 $id_alumno  = (int) $_SESSION["id_usuario"];
 
@@ -22,9 +18,7 @@ if ($id_materia <= 0) {
     exit;
 }
 
-/* ============================
-   VALIDAR INSCRIPCIÓN DEL ALUMNO
-============================ */
+/*Validar inscripccion alumno*/
 $sql = "
     SELECT 
         m.materia_nombre,
@@ -48,9 +42,7 @@ if (!$materia) {
     exit;
 }
 
-/* ============================
-   OBTENER TAREAS + ENTREGA + CALIFICACIÓN
-============================ */
+/*Obtener tareas + calificación*/
 $sqlTareas = "
     SELECT 
         t.id_tarea,
@@ -87,10 +79,7 @@ $stmt->execute([
 
 $tareas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-/* ============================
-   CALIFICACIÓN TOTAL ACUMULADA
-   suma(calif * ponderacion / 100)
-============================ */
+/*Calificacion total acumulada*/
 $calificacionTotal = 0;
 
 foreach ($tareas as $t) {
@@ -101,9 +90,7 @@ foreach ($tareas as $t) {
     }
 }
 
-/* ============================
-   MARCAR SECCIÓN ACTIVA
-============================ */
+/*Página activa*/
 $pagina_activa = 'calificaciones';
 ?>
 <!DOCTYPE html>

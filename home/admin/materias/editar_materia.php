@@ -47,25 +47,24 @@ $maestros = $pdo->query($sqlMaestros)->fetchAll(PDO::FETCH_ASSOC);
 <head>
     <meta charset="UTF-8">
     <title>Editar materia - AcademiX</title>
-
+    <!-- ICONO -->
+    <link rel="icon" type="image/x-icon" href="<?= BASE_URL ?>assets/imgs/logo-ico.png?v=1">
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
-
     <!-- CSS tablero -->
     <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/tablero.css">
 </head>
 
 <body class="admin-dashboard">
-
+    <!--Topbar Admin-->
     <?php include "../../../includes/topbar_admin.php"; ?>
-
+    <!--Sidebar Admin-->
     <div class="d-flex">
         <?php $pagina_activa = 'materias'; ?>
         <?php include "../../../includes/sidebar_admin.php"; ?>
-
+        <!--Alertas-->
         <main class="content-area p-4">
             <?php include "../../../includes/alertas_admin.php"; ?>
 
@@ -174,7 +173,7 @@ $maestros = $pdo->query($sqlMaestros)->fetchAll(PDO::FETCH_ASSOC);
                         </div>
                     </div>
 
-                    <!-- BOTONES -->
+                    <!--Botones-->
                     <div class="d-flex justify-content-between">
                         <a href="index.php" class="btn btn-outline-secondary">
                             <i class="bi bi-arrow-left"></i> Volver
@@ -191,13 +190,10 @@ $maestros = $pdo->query($sqlMaestros)->fetchAll(PDO::FETCH_ASSOC);
 
         </main>
     </div>
-
-    <!-- FOOTER GLOBAL -->
+    <!--Footer-->
     <?php include "../../../includes/footer.php"; ?>
-
     <!-- JS Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-
     <!-- JS global -->
     <script src="<?= BASE_URL ?>assets/js/main.js"></script>
 </body>
